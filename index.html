@@ -395,6 +395,66 @@
 
     /* --- i18n --- */
 
+    /* --- Mobile --- */
+    @media (max-width: 640px) {
+      .hero { padding: 48px 16px 40px; }
+      .hero h1 { font-size: 1.4em; }
+      .hero .subtitle { font-size: 0.95em; }
+      .hero .meta { font-size: 0.8em; }
+      .hero::after { height: 24px; border-radius: 16px 16px 0 0; }
+
+      .lang-switcher { top: 12px; right: 12px; }
+      .lang-btn { padding: 6px 10px; font-size: 0.78em; }
+
+      .nav-inner { padding: 0 12px; gap: 0; }
+      .nav-inner a { padding: 12px 10px; font-size: 0.78em; }
+
+      .section { padding: 20px 16px; margin: 12px 8px; border-radius: 12px; }
+      .section-title { font-size: 1.15em; margin-bottom: 14px; padding-bottom: 10px; }
+      .section h3 { font-size: 0.95em; margin: 18px 0 8px; }
+
+      .finding { padding: 14px 16px; margin: 10px 0; border-radius: 10px; }
+      .finding-title { font-size: 0.93em; }
+      .finding p { font-size: 0.88em; }
+
+      .counters { gap: 8px; margin: 14px 0; }
+      .counter { padding: 14px 8px; border-radius: 10px; }
+      .counter .num { font-size: 1.6em; }
+      .counter .lbl { font-size: 0.72em; }
+
+      .patient-block .val { font-size: 0.95em; margin-bottom: 10px; }
+
+      /* Tables: horizontal scroll wrapper */
+      .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 10px -16px; padding: 0 16px; }
+      table { font-size: 0.82em; min-width: 420px; }
+      th, td { padding: 8px 10px; }
+      th { font-size: 0.72em; }
+
+      .timeline { padding-left: 24px; }
+      .tl-step::before { left: -20px; width: 8px; height: 8px; }
+      .timeline::before { left: 6px; }
+      .tl-step .tl-when { font-size: 0.78em; }
+      .tl-step li { font-size: 0.88em; }
+
+      .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 6px; }
+      .gallery-label { font-size: 0.78em; }
+
+      .lightbox img { max-width: 96vw; max-height: 80vh; }
+      .lightbox-nav { width: 40px; height: 40px; font-size: 1.2em; }
+      .lightbox-prev { left: 8px; }
+      .lightbox-next { right: 8px; }
+      .lightbox-close { top: 10px; right: 12px; font-size: 1.6em; }
+      .lightbox-caption { font-size: 0.78em; margin-top: 8px; padding: 0 16px; }
+
+      .good-grid { grid-template-columns: 1fr; gap: 8px; }
+      .good-item { padding: 12px 14px; font-size: 0.85em; }
+
+      .disclaimer { margin: 16px 8px; padding: 16px; font-size: 0.78em; border-radius: 12px; }
+      footer { padding: 20px; font-size: 0.78em; }
+
+      details summary { font-size: 0.88em; }
+    }
+
     /* --- Print --- */
     @media print {
       .nav-wrap, .lang-switcher, .lightbox, .gallery-thumb { display: none !important; }
@@ -1131,6 +1191,29 @@ document.addEventListener('keydown', e => {
 
 document.getElementById('lightbox').addEventListener('click', e => {
   if (e.target === document.getElementById('lightbox')) closeLightbox();
+});
+
+// swipe support for lightbox
+let touchStartX = 0;
+let touchEndX = 0;
+const lb = document.getElementById('lightbox');
+lb.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
+lb.addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  const diff = touchStartX - touchEndX;
+  if (Math.abs(diff) > 50) {
+    navLightbox(diff > 0 ? 1 : -1);
+  }
+});
+
+// wrap tables for mobile horizontal scroll
+document.querySelectorAll('.section table').forEach(t => {
+  if (!t.parentElement.classList.contains('table-wrap')) {
+    const wrap = document.createElement('div');
+    wrap.className = 'table-wrap';
+    t.parentNode.insertBefore(wrap, t);
+    wrap.appendChild(t);
+  }
 });
 
 // init
