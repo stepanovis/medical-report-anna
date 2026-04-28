@@ -3,707 +3,1148 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Medical Report — Preconception Workup 2026</title>
+  <title>Медицинский отчёт — Анна Степанова</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
     :root {
-      --bg: #f8f9fa;
-      --card: #ffffff;
-      --text: #1a1a2e;
-      --muted: #6c757d;
-      --accent: #2563eb;
-      --red: #dc2626;
-      --orange: #ea580c;
-      --green: #16a34a;
-      --yellow: #ca8a04;
-      --border: #e5e7eb;
-      --red-bg: #fef2f2;
-      --orange-bg: #fff7ed;
-      --green-bg: #f0fdf4;
-      --yellow-bg: #fefce8;
-      --blue-bg: #eff6ff;
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --text: #1a1a1a;
+      --text-secondary: #555;
+      --text-muted: #888;
+      --accent: #2d5be3;
+      --accent-light: #e8eefb;
+      --red: #c0392b;
+      --red-soft: #fdf0ef;
+      --orange: #d35400;
+      --orange-soft: #fef5ed;
+      --green: #27ae60;
+      --green-soft: #eefbf3;
+      --border: #e8e8e8;
+      --divider: #f0f0f0;
+      --radius: 16px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
-      padding: 0;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
     }
-    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
 
-    header {
-      background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
+    /* --- Header --- */
+    .hero {
+      background: linear-gradient(135deg, #1a365d 0%, #2d5be3 100%);
+      color: #fff;
+      padding: 56px 24px 48px;
+      position: relative;
     }
-    header h1 { font-size: 1.8em; margin-bottom: 8px; }
-    header .subtitle { opacity: 0.85; font-size: 1.05em; }
-    header .date { opacity: 0.7; font-size: 0.9em; margin-top: 8px; }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0; right: 0;
+      height: 40px;
+      background: var(--bg);
+      border-radius: 24px 24px 0 0;
+    }
+    .hero-inner { max-width: 960px; margin: 0 auto; }
+    .hero h1 {
+      font-size: 2em;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+    .hero .subtitle { font-size: 1.1em; opacity: 0.85; font-weight: 300; }
+    .hero .meta { font-size: 0.88em; opacity: 0.6; margin-top: 12px; }
 
-    nav {
-      background: var(--card);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 20px;
+    /* --- Language switcher --- */
+    .lang-switcher {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      display: flex;
+      gap: 4px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 8px;
+      padding: 3px;
+    }
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.82em;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .lang-btn.active { background: rgba(255,255,255,0.25); color: #fff; }
+    .lang-btn:hover { color: #fff; }
+
+    /* --- Nav --- */
+    .nav-wrap {
       position: sticky;
       top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      z-index: 50;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 8px rgba(0,0,0,0.04);
     }
-    nav .container { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; justify-content: center; }
-    nav a {
-      color: var(--accent);
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 2px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav-inner a {
+      color: var(--text-secondary);
       text-decoration: none;
-      font-size: 0.85em;
-      padding: 4px 10px;
-      border-radius: 6px;
-      transition: background 0.2s;
+      font-size: 0.82em;
+      font-weight: 500;
+      padding: 14px 12px;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
     }
-    nav a:hover { background: var(--blue-bg); }
+    .nav-inner a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
-    .card {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 28px;
+    /* --- Sections --- */
+    .section {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin: 20px auto;
+      max-width: 960px;
+      box-shadow: var(--shadow);
+    }
+    .section-title {
+      font-size: 1.35em;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--divider);
+    }
+    .section h3 {
+      font-size: 1.05em;
+      font-weight: 600;
+      margin: 24px 0 12px;
+      color: var(--text);
+    }
+    .section p { margin: 8px 0; color: var(--text-secondary); }
+    .section ul { padding-left: 20px; color: var(--text-secondary); }
+    .section li { margin: 5px 0; }
+
+    /* --- Patient card --- */
+    .patient-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 600px) { .patient-grid { grid-template-columns: 1fr; } }
+    .patient-block label {
+      font-size: 0.75em;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .patient-block .val {
+      font-size: 1.05em;
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    /* --- Summary counters --- */
+    .counters {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
       margin: 20px 0;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-      border: 1px solid var(--border);
     }
-    .card h2 {
-      font-size: 1.3em;
-      margin-bottom: 16px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid var(--border);
+    @media (max-width: 600px) { .counters { grid-template-columns: repeat(2, 1fr); } }
+    .counter {
+      text-align: center;
+      padding: 20px 12px;
+      border-radius: 12px;
     }
-    .card h3 { font-size: 1.1em; margin: 18px 0 10px; color: var(--text); }
+    .counter .num { font-size: 2em; font-weight: 700; }
+    .counter .lbl { font-size: 0.8em; color: var(--text-secondary); margin-top: 2px; }
 
-    .alert {
-      padding: 16px 20px;
-      border-radius: 10px;
-      margin: 16px 0;
-      border-left: 4px solid;
+    /* --- Finding blocks (replaces alerts) --- */
+    .finding {
+      padding: 20px 24px;
+      border-radius: 12px;
+      margin: 14px 0;
     }
-    .alert-red { background: var(--red-bg); border-color: var(--red); }
-    .alert-orange { background: var(--orange-bg); border-color: var(--orange); }
-    .alert-green { background: var(--green-bg); border-color: var(--green); }
-    .alert-yellow { background: var(--yellow-bg); border-color: var(--yellow); }
-    .alert-blue { background: var(--blue-bg); border-color: var(--accent); }
-    .alert strong { display: block; margin-bottom: 4px; }
+    .finding-title {
+      font-weight: 600;
+      font-size: 1em;
+      margin-bottom: 6px;
+    }
+    .finding p { margin: 4px 0; font-size: 0.93em; }
+    .finding-critical { background: var(--red-soft); }
+    .finding-critical .finding-title { color: var(--red); }
+    .finding-warning { background: var(--orange-soft); }
+    .finding-warning .finding-title { color: var(--orange); }
+    .finding-good { background: var(--green-soft); }
+    .finding-good .finding-title { color: var(--green); }
+    .finding-neutral { background: #f5f5f5; }
 
-    .badge {
+    /* --- Tables --- */
+    table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.9em; }
+    th, td { padding: 10px 14px; text-align: left; }
+    th {
+      font-size: 0.78em;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      border-bottom: 2px solid var(--divider);
+    }
+    td { border-bottom: 1px solid var(--divider); }
+    tr:last-child td { border-bottom: none; }
+    .high { color: var(--red); font-weight: 600; }
+    .borderline { color: var(--orange); font-weight: 600; }
+    .ok { color: var(--green); font-weight: 500; }
+
+    .tag {
       display: inline-block;
       padding: 2px 10px;
       border-radius: 20px;
-      font-size: 0.8em;
+      font-size: 0.78em;
       font-weight: 600;
     }
-    .badge-red { background: var(--red); color: white; }
-    .badge-orange { background: var(--orange); color: white; }
-    .badge-green { background: var(--green); color: white; }
-    .badge-yellow { background: var(--yellow); color: white; }
+    .tag-red { background: var(--red); color: #fff; }
+    .tag-orange { background: var(--orange); color: #fff; }
+    .tag-green { background: var(--green); color: #fff; }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 14px 0;
-      font-size: 0.92em;
-    }
-    th, td {
-      padding: 10px 12px;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-    th { background: var(--bg); font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.3px; color: var(--muted); }
-    tr:hover { background: #f9fafb; }
-    .val-high { color: var(--red); font-weight: 600; }
-    .val-borderline { color: var(--orange); font-weight: 600; }
-    .val-ok { color: var(--green); }
-
-    .timeline {
-      position: relative;
-      padding-left: 30px;
-    }
+    /* --- Timeline --- */
+    .timeline { padding-left: 28px; position: relative; }
     .timeline::before {
       content: '';
       position: absolute;
-      left: 10px;
-      top: 0;
-      bottom: 0;
+      left: 8px; top: 4px; bottom: 4px;
       width: 2px;
-      background: var(--border);
+      background: var(--divider);
     }
-    .timeline-item {
+    .tl-step {
       position: relative;
-      margin-bottom: 20px;
-      padding: 14px 18px;
-      background: var(--bg);
-      border-radius: 8px;
+      margin-bottom: 24px;
     }
-    .timeline-item::before {
+    .tl-step::before {
       content: '';
       position: absolute;
-      left: -24px;
-      top: 18px;
-      width: 10px;
-      height: 10px;
+      left: -24px; top: 6px;
+      width: 10px; height: 10px;
       border-radius: 50%;
       background: var(--accent);
     }
-    .timeline-item .time { font-size: 0.8em; color: var(--muted); margin-bottom: 4px; }
+    .tl-step .tl-when {
+      font-size: 0.82em;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .tl-step ul { margin-top: 4px; }
 
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+    /* --- Photo gallery --- */
+    .gallery-section { margin-top: 16px; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .gallery-thumb {
+      aspect-ratio: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      background: #f0f0f0;
+    }
+    .gallery-thumb:hover { transform: scale(1.03); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+    .gallery-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-label {
+      font-size: 0.82em;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin: 10px 0 6px;
+    }
 
-    .patient-info { display: flex; flex-wrap: wrap; gap: 20px; }
-    .patient-info .info-block { flex: 1; min-width: 200px; }
-    .info-block dt { font-size: 0.8em; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
-    .info-block dd { font-size: 1.05em; font-weight: 500; margin-bottom: 10px; }
-
-    .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 16px 0; }
-    .summary-item {
-      padding: 16px;
-      border-radius: 10px;
+    /* --- Lightbox --- */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 16px; right: 20px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2em;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .lightbox-close:hover { opacity: 1; }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: #fff;
+      font-size: 1.5em;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .lightbox-nav:hover { background: rgba(255,255,255,0.3); }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .lightbox-caption {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.85em;
+      margin-top: 12px;
       text-align: center;
     }
-    .summary-item .number { font-size: 1.8em; font-weight: 700; }
-    .summary-item .label { font-size: 0.82em; color: var(--muted); margin-top: 2px; }
 
-    details { margin: 10px 0; }
+    /* --- Collapsible --- */
+    details { margin: 8px 0; }
     details summary {
       cursor: pointer;
-      font-weight: 600;
+      font-weight: 500;
       padding: 8px 0;
       color: var(--accent);
+      font-size: 0.93em;
     }
     details summary:hover { text-decoration: underline; }
+    details[open] summary { margin-bottom: 8px; }
 
-    ul { padding-left: 20px; }
-    li { margin: 6px 0; }
+    /* --- Two col grid --- */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
 
-    .disclaimer {
-      background: #f1f5f9;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 16px;
-      font-size: 0.85em;
-      color: var(--muted);
-      margin-top: 30px;
+    /* --- Good results grid --- */
+    .good-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
     }
-    footer { text-align: center; padding: 30px; color: var(--muted); font-size: 0.85em; }
+    .good-item {
+      background: var(--green-soft);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 0.9em;
+    }
+    .good-item strong { color: var(--green); }
+
+    /* --- Disclaimer --- */
+    .disclaimer {
+      max-width: 960px;
+      margin: 24px auto;
+      padding: 20px 32px;
+      background: #f5f5f5;
+      border-radius: var(--radius);
+      font-size: 0.82em;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    footer {
+      text-align: center;
+      padding: 32px;
+      font-size: 0.82em;
+      color: var(--text-muted);
+    }
+
+    /* --- i18n --- */
+    [data-lang] { display: none; }
+    [data-lang="ru"] { display: contents; }
+    .lang-block { display: none; }
+    .lang-block.active { display: block; }
+
+    /* --- Print --- */
+    @media print {
+      .nav-wrap, .lang-switcher, .lightbox, .gallery-thumb { display: none !important; }
+      .section { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+      .hero { background: #1a365d !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Preconception Medical Report</h1>
-  <div class="subtitle">Anna Stepanova & Ivan Stepanov</div>
-  <div class="date">Examinations: January — March 2026 | Report generated: April 28, 2026</div>
-</header>
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">&#8249;</button>
+  <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">&#8250;</button>
+  <img id="lb-img" src="" alt="">
+  <div class="lightbox-caption" id="lb-caption"></div>
+</div>
 
-<nav>
-  <div class="container">
-    <a href="#summary">Summary</a>
-    <a href="#action-items">Action Items</a>
-    <a href="#problems">Key Problems</a>
-    <a href="#gaps">Missing Tests</a>
-    <a href="#plan">Action Plan</a>
-    <a href="#mri">MRI</a>
-    <a href="#hysteroscopy">Hysteroscopy</a>
-    <a href="#blood">Blood Tests</a>
-    <a href="#infections">Infections</a>
-    <a href="#thrombophilia">Thrombophilia</a>
-    <a href="#urine">Urine</a>
-    <a href="#breast">Breast</a>
-    <a href="#karyotype">Karyotype</a>
+<!-- ===== HEADER ===== -->
+<div class="hero">
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('ru')">RU</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('pt')">PT</button>
   </div>
-</nav>
-
-<div class="container">
-
-  <!-- Patient Info -->
-  <div class="card" id="patient">
-    <h2>Patient Information</h2>
-    <div class="patient-info">
-      <div class="info-block">
-        <dl>
-          <dt>Patient</dt><dd>Anna Stepanova</dd>
-          <dt>Date of Birth</dt><dd>10 June 1987 (38 years)</dd>
-          <dt>Blood Type</dt><dd>AB Rh+</dd>
-        </dl>
-      </div>
-      <div class="info-block">
-        <dl>
-          <dt>Partner</dt><dd>Ivan Stepanov</dd>
-          <dt>Date of Birth</dt><dd>24 August 1990 (35 years)</dd>
-          <dt>Physician</dt><dd>Dra. Fran&ccedil;oise Quintanilha Padula</dd>
-        </dl>
-      </div>
-    </div>
+  <div class="hero-inner">
+    <h1 class="i18n" data-ru="Медицинский отчёт" data-en="Medical Report" data-pt="Relatório Médico"></h1>
+    <div class="subtitle i18n" data-ru="Анна Степанова и Иван Степанов" data-en="Anna Stepanova &amp; Ivan Stepanov" data-pt="Anna Stepanova &amp; Ivan Stepanov"></div>
+    <div class="meta i18n" data-ru="Обследования: январь — март 2026 · Отчёт: 28 апреля 2026" data-en="Examinations: January — March 2026 · Report: April 28, 2026" data-pt="Exames: janeiro — março 2026 · Relatório: 28 de abril de 2026"></div>
   </div>
+</div>
 
-  <!-- Quick Summary -->
-  <div class="card" id="summary">
-    <h2>Quick Summary</h2>
-    <div class="summary-grid">
-      <div class="summary-item" style="background: var(--red-bg);">
-        <div class="number" style="color: var(--red);">3</div>
-        <div class="label">Issues to Fix</div>
-      </div>
-      <div class="summary-item" style="background: var(--orange-bg);">
-        <div class="number" style="color: var(--orange);">3</div>
-        <div class="label">Missing Tests</div>
-      </div>
-      <div class="summary-item" style="background: var(--yellow-bg);">
-        <div class="number" style="color: var(--yellow);">4</div>
-        <div class="label">Monitor Items</div>
-      </div>
-      <div class="summary-item" style="background: var(--green-bg);">
-        <div class="number" style="color: var(--green);">8</div>
-        <div class="label">All Clear</div>
-      </div>
+<!-- ===== NAV ===== -->
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a href="#summary" class="i18n" data-ru="Сводка" data-en="Summary" data-pt="Resumo"></a>
+    <a href="#critical" class="i18n" data-ru="Критичное" data-en="Critical" data-pt="Crítico"></a>
+    <a href="#missing" class="i18n" data-ru="Недостающие" data-en="Missing Tests" data-pt="Exames Faltantes"></a>
+    <a href="#plan" class="i18n" data-ru="План" data-en="Plan" data-pt="Plano"></a>
+    <a href="#mri" class="i18n" data-ru="МРТ" data-en="MRI" data-pt="RM"></a>
+    <a href="#hysteroscopy" class="i18n" data-ru="Гистероскопия" data-en="Hysteroscopy" data-pt="Histeroscopia"></a>
+    <a href="#blood" class="i18n" data-ru="Кровь" data-en="Blood" data-pt="Sangue"></a>
+    <a href="#infections" class="i18n" data-ru="Инфекции" data-en="Infections" data-pt="Infecções"></a>
+    <a href="#thrombophilia" class="i18n" data-ru="Тромбофилия" data-en="Thrombophilia" data-pt="Trombofilia"></a>
+    <a href="#urine" class="i18n" data-ru="Моча" data-en="Urine" data-pt="Urina"></a>
+    <a href="#breast" class="i18n" data-ru="Грудь" data-en="Breast" data-pt="Mama"></a>
+    <a href="#karyotype" class="i18n" data-ru="Кариотип" data-en="Karyotype" data-pt="Cariótipo"></a>
+    <a href="#photos" class="i18n" data-ru="Документы" data-en="Documents" data-pt="Documentos"></a>
+  </div>
+</div>
+
+<div style="padding-top: 8px;">
+
+<!-- ===== PATIENT INFO ===== -->
+<div class="section" id="patient">
+  <h2 class="section-title i18n" data-ru="Информация о пациентах" data-en="Patient Information" data-pt="Informações dos Pacientes"></h2>
+  <div class="patient-grid">
+    <div class="patient-block">
+      <label class="i18n" data-ru="Пациентка" data-en="Patient" data-pt="Paciente"></label>
+      <div class="val">Анна Степанова</div>
+      <label class="i18n" data-ru="Дата рождения" data-en="Date of birth" data-pt="Data de nascimento"></label>
+      <div class="val i18n" data-ru="10.06.1987 (38 лет)" data-en="10 June 1987 (38 years)" data-pt="10/06/1987 (38 anos)"></div>
+      <label class="i18n" data-ru="Группа крови" data-en="Blood type" data-pt="Tipo sanguíneo"></label>
+      <div class="val">AB Rh+</div>
     </div>
-
-    <div class="alert alert-green">
-      <strong>Overall Assessment</strong>
-      Most results are favorable. No endometriosis, no thrombophilia, normal hormones, normal karyotypes, clean infection screening. The three issues found (chronic endometritis, elevated homocysteine, UTI) are all treatable within 2 months. Three additional tests are needed specifically because the goal is natural conception rather than IVF.
+    <div class="patient-block">
+      <label class="i18n" data-ru="Партнёр" data-en="Partner" data-pt="Parceiro"></label>
+      <div class="val">Иван Степанов</div>
+      <label class="i18n" data-ru="Врач" data-en="Physician" data-pt="Médica"></label>
+      <div class="val">Dra. Françoise Quintanilha Padula</div>
+      <label class="i18n" data-ru="Город" data-en="City" data-pt="Cidade"></label>
+      <div class="val">Petrópolis, RJ, Brasil</div>
     </div>
   </div>
+</div>
 
-  <!-- Action Items -->
-  <div class="card" id="action-items">
-    <h2>Critical Action Items</h2>
-
-    <div class="alert alert-red">
-      <strong>1. Chronic Endometritis &mdash; Must Treat Before Conception</strong>
-      Found on hysteroscopy (21 Jan 2026). Reduces implantation probability 2&ndash;3x and increases early miscarriage risk. Treatment: doxycycline 100 mg twice daily &times; 14 days. Confirm resolution with repeat biopsy (CD138 immunohistochemistry). Timeline: ~2 months.
+<!-- ===== SUMMARY ===== -->
+<div class="section" id="summary">
+  <h2 class="section-title i18n" data-ru="Общая картина" data-en="Overview" data-pt="Visão Geral"></h2>
+  <div class="counters">
+    <div class="counter" style="background: var(--red-soft);">
+      <div class="num" style="color: var(--red);">3</div>
+      <div class="lbl i18n" data-ru="Нужно лечить" data-en="Need treatment" data-pt="Precisam tratamento"></div>
     </div>
-
-    <div class="alert alert-red">
-      <strong>2. Homocysteine 18.1 &mu;mol/L (normal &lt;13.9) + Low B12</strong>
-      Associated with implantation failure, recurrent miscarriage (2&ndash;3x risk when &gt;15), neural tube defects, preeclampsia. Start immediately: methylcobalamin (B12) 1000&ndash;5000 &mu;g/day + L-methylfolate 800&ndash;1000 &mu;g/day + vitamin B6 25&ndash;50 mg/day. Test MTHFR gene. Recheck homocysteine in 6&ndash;8 weeks. Target: &lt;10.
+    <div class="counter" style="background: var(--orange-soft);">
+      <div class="num" style="color: var(--orange);">3</div>
+      <div class="lbl i18n" data-ru="Не хватает анализов" data-en="Missing tests" data-pt="Exames faltantes"></div>
     </div>
-
-    <div class="alert alert-red">
-      <strong>3. UTI &mdash; E. coli &gt;100,000 CFU/mL</strong>
-      Found 10 March 2026. Resistant to ampicillin, ciprofloxacin, levofloxacin. Sensitive to nitrofurantoin, fosfomycin, cephalexin, and others. Must be treated before conception attempts. Confirm if already treated; if not, treat per antibiogram.
+    <div class="counter" style="background: #fef9e7;">
+      <div class="num" style="color: #b7950b;">4</div>
+      <div class="lbl i18n" data-ru="Мониторинг" data-en="Monitor" data-pt="Monitorar"></div>
     </div>
-
-    <div class="alert alert-orange">
-      <strong>4. Tubal Patency &mdash; NOT TESTED (Critical for Natural Conception)</strong>
-      Hysteroscopy showed tubal ostia look normal, but this is NOT a patency test. For natural conception, the tubes MUST be patent &mdash; this is the only path for egg-sperm meeting. Need HSG (hysterosalpingography) or sonoHSG after treating endometritis and UTI.
-    </div>
-
-    <div class="alert alert-orange">
-      <strong>5. Spermogram &mdash; NOT DONE</strong>
-      Karyotype (46,XY) only checks chromosomes, NOT sperm quality. Male factor accounts for 40&ndash;50% of infertility. Need full semen analysis (WHO 2021 criteria): volume, concentration, motility, morphology, MAR test.
-    </div>
-
-    <div class="alert alert-orange">
-      <strong>6. AMH (Anti-M&uuml;llerian Hormone) &mdash; NOT TESTED</strong>
-      FSH 8.47 is acceptable but AMH is the gold standard for ovarian reserve. At 38, this is critical information: determines how much time is available for natural conception vs. needing assisted reproduction.
+    <div class="counter" style="background: var(--green-soft);">
+      <div class="num" style="color: var(--green);">8</div>
+      <div class="lbl i18n" data-ru="Всё хорошо" data-en="All clear" data-pt="Tudo bem"></div>
     </div>
   </div>
+  <div class="finding finding-good">
+    <div class="finding-title i18n" data-ru="Общая оценка" data-en="Overall Assessment" data-pt="Avaliação Geral"></div>
+    <p class="i18n"
+       data-ru="Большинство результатов благоприятны. Эндометриоза нет, тромбофилий нет, гормоны в норме, кариотипы нормальны, инфекционный скрининг чист. Три выявленные проблемы (хронический эндометрит, повышенный гомоцистеин, ИМП) поддаются лечению в течение 2 месяцев. Три дополнительных обследования необходимы именно потому, что цель — естественное зачатие, а не ЭКО."
+       data-en="Most results are favorable. No endometriosis, no thrombophilia, normal hormones, normal karyotypes, clean infection screening. The three issues found (chronic endometritis, elevated homocysteine, UTI) are all treatable within 2 months. Three additional tests are needed specifically because the goal is natural conception rather than IVF."
+       data-pt="A maioria dos resultados é favorável. Sem endometriose, sem trombofilia, hormônios normais, cariótipos normais, triagem infecciosa limpa. Os três problemas encontrados (endometrite crônica, homocisteína elevada, ITU) são tratáveis em 2 meses. Três exames adicionais são necessários porque o objetivo é a concepção natural, não FIV."></p>
+  </div>
+</div>
 
-  <!-- Key Problems Detail -->
-  <div class="card" id="problems">
-    <h2>Key Problems &mdash; Detailed Analysis</h2>
+<!-- ===== CRITICAL ===== -->
+<div class="section" id="critical">
+  <h2 class="section-title i18n" data-ru="Критичные проблемы" data-en="Critical Issues" data-pt="Problemas Críticos"></h2>
 
-    <h3>1. Chronic Endometritis</h3>
-    <p>The endometrium is the "soil" where the embryo implants. Chronic inflammation disrupts receptivity. Studies show it reduces implantation rates 2&ndash;3x and is a recognized cause of recurrent pregnancy loss.</p>
-    <p><strong>Diagnosis:</strong> Visual signs on hysteroscopy (Dr. Diler, 21 Jan 2026). Standard histology showed "proliferative endometrium without atypias" but standard H&E staining often misses chronic endometritis. The gold standard is CD138 immunohistochemistry (plasma cell marker).</p>
-    <p><strong>Treatment protocol:</strong></p>
-    <ul>
-      <li>Doxycycline 100 mg &times; 2/day &times; 14 days (some protocols add metronidazole)</li>
-      <li>Post-treatment: repeat biopsy with CD138 or repeat hysteroscopy to confirm resolution</li>
-      <li>Do NOT attempt conception until confirmed cured</li>
-      <li>Total timeline: ~2 months (treatment + recovery + verification)</li>
-    </ul>
-
-    <h3>2. Hyperhomocysteinemia + B12 Deficiency</h3>
-    <p>Homocysteine is metabolized using vitamins B12, folate, and B6. When deficient (or with MTHFR gene polymorphism), homocysteine accumulates.</p>
-    <p><strong>Risks during conception and pregnancy:</strong></p>
-    <ul>
-      <li>Impaired embryo implantation</li>
-      <li>2&ndash;3x increased early miscarriage risk (homocysteine &gt;15)</li>
-      <li>Neural tube defects (spina bifida, anencephaly) &mdash; most dangerous</li>
-      <li>Preeclampsia, placental abruption, fetal growth restriction</li>
-      <li>Impaired oocyte quality</li>
-    </ul>
-    <p><strong>B12 = 236 pg/mL</strong> with elevated homocysteine = confirmed functional deficiency despite being "in range."</p>
-    <p><strong>Action:</strong></p>
-    <ul>
-      <li>Methylcobalamin (active B12) 1000&ndash;5000 &mu;g/day</li>
-      <li>L-methylfolate (5-MTHF) 800&ndash;1000 &mu;g/day (NOT regular folic acid &mdash; may not be metabolized if MTHFR mutation present)</li>
-      <li>Pyridoxine (B6) 25&ndash;50 mg/day</li>
-      <li>MTHFR genetic test (C677T and A1298C)</li>
-      <li>Recheck homocysteine in 6&ndash;8 weeks. Target: &lt;10 &mu;mol/L</li>
-    </ul>
-
-    <h3>3. UTI (E. coli)</h3>
-    <table>
-      <tr><th>Antibiotic</th><th>Sensitivity</th></tr>
-      <tr><td>Ampicillin</td><td><span class="val-high">Resistant</span></td></tr>
-      <tr><td>Ciprofloxacin</td><td><span class="val-high">Resistant</span></td></tr>
-      <tr><td>Levofloxacin</td><td><span class="val-high">Resistant</span></td></tr>
-      <tr><td>Nitrofurantoin</td><td><span class="val-ok">Sensitive</span></td></tr>
-      <tr><td>Fosfomycin</td><td><span class="val-ok">Sensitive</span></td></tr>
-      <tr><td>Cephalexin</td><td><span class="val-ok">Sensitive</span></td></tr>
-      <tr><td>Ceftriaxone</td><td><span class="val-ok">Sensitive</span></td></tr>
-      <tr><td>TMP-SMX</td><td><span class="val-ok">Sensitive</span></td></tr>
-    </table>
-    <p>Untreated UTI in pregnancy = risk of pyelonephritis and preterm labor. Bacteria can ascend to uterus and maintain endometritis.</p>
+  <div class="finding finding-critical">
+    <div class="finding-title i18n" data-ru="1. Хронический эндометрит" data-en="1. Chronic Endometritis" data-pt="1. Endometrite Crônica"></div>
+    <p class="i18n"
+       data-ru="Выявлен на гистероскопии (21.01.2026). Снижает вероятность имплантации в 2–3 раза и увеличивает риск раннего выкидыша. Лечение: доксициклин 100 мг × 2 раза/день × 14 дней. Контроль: повторная биопсия с иммуногистохимией CD138. Срок: ~2 месяца."
+       data-en="Found on hysteroscopy (21 Jan 2026). Reduces implantation probability 2–3x and increases early miscarriage risk. Treatment: doxycycline 100 mg twice daily × 14 days. Confirm resolution with repeat biopsy (CD138 immunohistochemistry). Timeline: ~2 months."
+       data-pt="Encontrada na histeroscopia (21/01/2026). Reduz a probabilidade de implantação em 2–3x e aumenta o risco de aborto precoce. Tratamento: doxiciclina 100 mg 2x/dia × 14 dias. Confirmar resolução com biópsia de controle (imuno-histoquímica CD138). Prazo: ~2 meses."></p>
   </div>
 
-  <!-- Missing Tests -->
-  <div class="card" id="gaps">
-    <h2>Missing Tests for Natural Conception</h2>
-    <p>The workup was designed for IVF, where some tests are unnecessary because the procedure bypasses them. For natural conception, these are critical:</p>
-
-    <div class="two-col">
-      <div class="alert alert-orange">
-        <strong>Tubal Patency (HSG)</strong>
-        Tubes are the ONLY path for natural fertilization. Hysteroscopy only saw the openings, not patency along the full ~10 cm length. HSG or sonoHSG needed after endometritis/UTI treatment. Day 5&ndash;11 of cycle.
-      </div>
-      <div class="alert alert-orange">
-        <strong>Semen Analysis (Spermogram)</strong>
-        Male factor = 40&ndash;50% of infertility causes. Karyotype checks chromosomes only, not sperm function. Need WHO 2021 analysis: concentration, motility, morphology, MAR test. 3&ndash;5 days abstinence.
-      </div>
-    </div>
-    <div class="alert alert-orange">
-      <strong>AMH (Anti-M&uuml;llerian Hormone)</strong>
-      Gold standard for ovarian reserve. FSH 8.47 is acceptable but crude. At 38, AMH determines strategy: if good (&gt;1.0&ndash;1.5 ng/mL) &mdash; time for natural attempts; if low (&lt;0.5&ndash;1.0) &mdash; consider egg freezing as insurance. Can be tested any cycle day.
-    </div>
+  <div class="finding finding-critical">
+    <div class="finding-title i18n" data-ru="2. Гомоцистеин 18.1 мкмоль/л + низкий B12" data-en="2. Homocysteine 18.1 µmol/L + Low B12" data-pt="2. Homocisteína 18.1 µmol/L + B12 Baixa"></div>
+    <p class="i18n"
+       data-ru="Норма гомоцистеина до 13.9. B12 = 236 пг/мл — нижняя граница нормы, при повышенном гомоцистеине это функциональный дефицит. Ассоциировано с неудачами имплантации, невынашиванием (риск × 2–3 при >15), дефектами нервной трубки, преэклампсией. Начать сейчас: метилкобаламин 1000–5000 мкг/д + L-метилфолат 800–1000 мкг/д + B6 25–50 мг/д. Тест MTHFR. Контроль через 6–8 недель, цель < 10."
+       data-en="Normal homocysteine <13.9. B12 = 236 pg/mL — low-normal, with elevated homocysteine this is functional deficiency. Associated with implantation failure, miscarriage (2–3x risk when >15), neural tube defects, preeclampsia. Start now: methylcobalamin 1000–5000 µg/day + L-methylfolate 800–1000 µg/day + B6 25–50 mg/day. Test MTHFR. Recheck in 6–8 weeks, target <10."
+       data-pt="Homocisteína normal <13.9. B12 = 236 pg/mL — limite inferior do normal, com homocisteína elevada é deficiência funcional. Associada a falha de implantação, aborto (risco 2–3x quando >15), defeitos do tubo neural, pré-eclâmpsia. Iniciar agora: metilcobalamina 1000–5000 µg/dia + L-metilfolato 800–1000 µg/dia + B6 25–50 mg/dia. Testar MTHFR. Recontrole em 6–8 semanas, meta <10."></p>
   </div>
 
-  <!-- Action Plan Timeline -->
-  <div class="card" id="plan">
-    <h2>Step-by-Step Action Plan</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="time">Now (next 2 weeks)</div>
-        <ul>
-          <li>Start vitamins: methylcobalamin + methylfolate + B6</li>
-          <li>Treat UTI if not already treated</li>
-          <li>Schedule spermogram for Ivan</li>
-          <li>Test AMH for Anna (any cycle day)</li>
-          <li>Discuss chronic endometritis treatment + MTHFR test with doctor</li>
-        </ul>
-      </div>
-      <div class="timeline-item">
-        <div class="time">Weeks 2&ndash;4</div>
-        <ul>
-          <li>Doxycycline course for endometritis (14 days)</li>
-          <li>Start iron supplementation (bisglycinate)</li>
-          <li>Get spermogram and AMH results</li>
-        </ul>
-      </div>
-      <div class="timeline-item">
-        <div class="time">Weeks 6&ndash;8</div>
-        <ul>
-          <li>Recheck homocysteine (target &lt;10)</li>
-          <li>Control biopsy/hysteroscopy &mdash; confirm endometritis resolved</li>
-          <li>HSG (tubal patency) &mdash; after endometritis + UTI resolved, cycle day 5&ndash;11</li>
-        </ul>
-      </div>
-      <div class="timeline-item">
-        <div class="time">Months 2&ndash;3 (once everything resolved)</div>
-        <ul>
-          <li>Begin active natural conception attempts</li>
-          <li>Track ovulation: LH tests + folliculometry (ultrasound) for first 2&ndash;3 cycles</li>
-        </ul>
-      </div>
-      <div class="timeline-item">
-        <div class="time">Month 9 (6 months of active trying)</div>
-        <ul>
-          <li>If not successful &mdash; reassess strategy, consider IVF</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- MRI -->
-  <div class="card" id="mri">
-    <h2>MRI Pelvis (27 Jan 2026)</h2>
-    <p><strong>Facility:</strong> Centro de Imagem UNIFASE, Petr&oacute;polis, RJ</p>
-    <p><strong>Indication:</strong> Endometriosis? Adenomyosis?</p>
-    <div class="alert alert-green">
-      <strong>Conclusion: No relevant pathological changes. No endometriosis. No adenomyosis.</strong>
-    </div>
+  <div class="finding finding-critical">
+    <div class="finding-title i18n" data-ru="3. Инфекция мочевых путей — E. coli >100 000 КОЕ/мл" data-en="3. UTI — E. coli >100,000 CFU/mL" data-pt="3. ITU — E. coli >100.000 UFC/mL"></div>
+    <p class="i18n"
+       data-ru="Посев от 10.03.2026. Резистентна к ампициллину, ципрофлоксацину, левофлоксацину. Чувствительна к нитрофурантоину, фосфомицину, цефалексину и др. Необходимо пролечить до попыток зачатия — нелечённая ИМП при беременности угрожает пиелонефритом и преждевременными родами."
+       data-en="Culture from 10 March 2026. Resistant to ampicillin, ciprofloxacin, levofloxacin. Sensitive to nitrofurantoin, fosfomycin, cephalexin, etc. Must be treated before conception attempts — untreated UTI in pregnancy risks pyelonephritis and preterm labor."
+       data-pt="Urocultura de 10/03/2026. Resistente a ampicilina, ciprofloxacino, levofloxacino. Sensível a nitrofurantoína, fosfomicina, cefalexina, etc. Deve ser tratada antes das tentativas de concepção — ITU não tratada na gravidez pode causar pielonefrite e parto prematuro."></p>
     <details>
-      <summary>Full findings</summary>
-      <ul>
-        <li>Uterus in anteversion, normal shape and contour, 8.0 &times; 4.4 &times; 6.3 cm, volume 116.4 cm&sup3;</li>
-        <li>Rare small intramural myometrial foci &lt;10 mm with T2 hyposignal &mdash; may be small leiomyomas (FIGO 4) or myometrial contractions. Clinically insignificant.</li>
-        <li>No adenomyosis</li>
-        <li>Endometrium centered, normal thickness and signal</li>
-        <li>Naboth cysts on cervix</li>
-        <li>Left ovary 4.2 cm&sup3; with corpus luteum 2.0 cm</li>
-        <li>Right ovary 4.0 cm&sup3;</li>
-        <li>Multiple small bilateral follicles up to 15 mm</li>
-        <li>No endometriomas or hemorrhagic foci</li>
-        <li>Tubes normal signal, no dilation</li>
-        <li>Small physiological free fluid in posterior cul-de-sac</li>
-        <li>Retovaginal space: no infiltrative endometriosis</li>
-        <li>No pelvic lymphadenopathy</li>
-        <li>Pelvic musculature: normal</li>
-      </ul>
+      <summary class="i18n" data-ru="Антибиотикограмма" data-en="Antibiogram" data-pt="Antibiograma"></summary>
+      <table>
+        <tr><th class="i18n" data-ru="Антибиотик" data-en="Antibiotic" data-pt="Antibiótico"></th><th class="i18n" data-ru="Чувствительность" data-en="Sensitivity" data-pt="Sensibilidade"></th></tr>
+        <tr><td>Ampicillin / Ampicilina</td><td class="high i18n" data-ru="Резистентна" data-en="Resistant" data-pt="Resistente"></td></tr>
+        <tr><td>Ciprofloxacin / Ciprofloxacino</td><td class="high i18n" data-ru="Резистентна" data-en="Resistant" data-pt="Resistente"></td></tr>
+        <tr><td>Levofloxacin / Levofloxacino</td><td class="high i18n" data-ru="Резистентна" data-en="Resistant" data-pt="Resistente"></td></tr>
+        <tr><td>Nitrofurantoin / Nitrofurantoína</td><td class="ok i18n" data-ru="Чувствительна" data-en="Sensitive" data-pt="Sensível"></td></tr>
+        <tr><td>Fosfomycin / Fosfomicina</td><td class="ok i18n" data-ru="Чувствительна" data-en="Sensitive" data-pt="Sensível"></td></tr>
+        <tr><td>Cephalexin / Cefalexina</td><td class="ok i18n" data-ru="Чувствительна" data-en="Sensitive" data-pt="Sensível"></td></tr>
+        <tr><td>Ceftriaxone / Ceftriaxona</td><td class="ok i18n" data-ru="Чувствительна" data-en="Sensitive" data-pt="Sensível"></td></tr>
+        <tr><td>TMP-SMX / Cotrimoxazol</td><td class="ok i18n" data-ru="Чувствительна" data-en="Sensitive" data-pt="Sensível"></td></tr>
+      </table>
     </details>
   </div>
+</div>
 
-  <!-- Hysteroscopy -->
-  <div class="card" id="hysteroscopy">
-    <h2>Hysteroscopy (21 Jan 2026)</h2>
-    <p><strong>Physician:</strong> Dr. Diler P. Da Silva</p>
-    <p><strong>Indication:</strong> Infertility investigation</p>
-    <div class="alert alert-red">
-      <strong>Key finding: Signs of chronic endometritis</strong>
-    </div>
-    <table>
-      <tr><th>Structure</th><th>Finding</th></tr>
-      <tr><td>Uterine cervix</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>Cervical canal</td><td><span class="val-ok">Trophic, normal caliber</span></td></tr>
-      <tr><td>Internal os</td><td><span class="val-ok">Competent, normal</span></td></tr>
-      <tr><td>Uterine cavity</td><td><span class="val-ok">Normal shape and volume</span></td></tr>
-      <tr><td>Tubal ostia</td><td><span class="val-ok">Visualized, reactive</span></td></tr>
-      <tr><td>Endometrium</td><td><span class="val-high">Chronic endometritis signs</span><br>Proliferative pattern, 3&ndash;5 mm, typical vascularization</td></tr>
-    </table>
-    <p>Directed endometrial biopsy performed.</p>
+<!-- ===== KEY PROBLEMS DETAIL ===== -->
+<div class="section">
+  <h2 class="section-title i18n" data-ru="Подробный разбор проблем" data-en="Detailed Problem Analysis" data-pt="Análise Detalhada dos Problemas"></h2>
 
-    <h3>Endometrial Biopsy &mdash; Histology (DB Diagn&oacute;sticos)</h3>
-    <p>Fragment 0.2 &times; 0.1 &times; 0.1 cm. <strong>Conclusion: Proliferative endometrium, NO atypias.</strong></p>
-    <p><em>Note: Standard histology may miss chronic endometritis. CD138 immunohistochemistry (plasma cell marker) is the gold standard for confirmation.</em></p>
+  <h3 class="i18n" data-ru="Хронический эндометрит" data-en="Chronic Endometritis" data-pt="Endometrite Crônica"></h3>
+  <p class="i18n"
+     data-ru="Эндометрий — это «почва», в которую имплантируется эмбрион. Хроническое воспаление нарушает рецептивность. Исследования показывают снижение частоты имплантации в 2–3 раза. Это признанная причина привычного невынашивания."
+     data-en="The endometrium is the &quot;soil&quot; where the embryo implants. Chronic inflammation disrupts receptivity. Studies show it reduces implantation rates 2–3x. It is a recognized cause of recurrent pregnancy loss."
+     data-pt="O endométrio é o &quot;solo&quot; onde o embrião se implanta. A inflamação crônica altera a receptividade. Estudos mostram redução de 2–3x na taxa de implantação. É uma causa reconhecida de perda gestacional recorrente."></p>
+  <p class="i18n"
+     data-ru="Диагноз: визуальные признаки на гистероскопии (Dr. Diler, 21.01.2026). Стандартная гистология показала «пролиферативный эндометрий без атипий», однако окрашивание H&E часто пропускает хронический эндометрит. Золотой стандарт — иммуногистохимия CD138 (маркер плазматических клеток)."
+     data-en="Diagnosis: visual signs on hysteroscopy (Dr. Diler, 21 Jan 2026). Standard histology showed &quot;proliferative endometrium without atypias&quot; but standard H&E staining often misses chronic endometritis. The gold standard is CD138 immunohistochemistry (plasma cell marker)."
+     data-pt="Diagnóstico: sinais visuais na histeroscopia (Dr. Diler, 21/01/2026). A histologia padrão mostrou &quot;endométrio proliferativo sem atipias&quot;, mas a coloração H&E frequentemente não detecta endometrite crônica. O padrão-ouro é a imuno-histoquímica CD138 (marcador de plasmócitos)."></p>
+  <p class="i18n" data-ru="Протокол лечения:" data-en="Treatment protocol:" data-pt="Protocolo de tratamento:"></p>
+  <ul>
+    <li class="i18n" data-ru="Доксициклин 100 мг × 2/день × 14 дней (некоторые протоколы добавляют метронидазол)" data-en="Doxycycline 100 mg × 2/day × 14 days (some protocols add metronidazole)" data-pt="Doxiciclina 100 mg × 2/dia × 14 dias (alguns protocolos adicionam metronidazol)"></li>
+    <li class="i18n" data-ru="После лечения: повторная биопсия с CD138 или повторная гистероскопия для подтверждения излечения" data-en="Post-treatment: repeat biopsy with CD138 or repeat hysteroscopy to confirm resolution" data-pt="Pós-tratamento: biópsia de controle com CD138 ou histeroscopia de controle para confirmar resolução"></li>
+    <li class="i18n" data-ru="НЕ пытаться зачать до подтверждения излечения" data-en="Do NOT attempt conception until confirmed cured" data-pt="NÃO tentar conceber até confirmar a cura"></li>
+  </ul>
+
+  <h3 class="i18n" data-ru="Гипергомоцистеинемия + дефицит B12" data-en="Hyperhomocysteinemia + B12 Deficiency" data-pt="Hiper-homocisteinemia + Deficiência de B12"></h3>
+  <p class="i18n"
+     data-ru="Гомоцистеин метаболизируется при участии витаминов B12, фолата и B6. При дефиците (или полиморфизме гена MTHFR) — накапливается. Риски: нарушение имплантации эмбриона, ранний выкидыш (×2–3 при >15), дефекты нервной трубки (spina bifida, анэнцефалия), преэклампсия, отслойка плаценты, задержка роста плода."
+     data-en="Homocysteine is metabolized using vitamins B12, folate, and B6. When deficient (or with MTHFR gene polymorphism), homocysteine accumulates. Risks: impaired embryo implantation, early miscarriage (2–3x when >15), neural tube defects (spina bifida, anencephaly), preeclampsia, placental abruption, fetal growth restriction."
+     data-pt="A homocisteína é metabolizada usando vitaminas B12, folato e B6. Quando deficientes (ou com polimorfismo do gene MTHFR), a homocisteína se acumula. Riscos: falha de implantação, aborto precoce (2–3x quando >15), defeitos do tubo neural (espinha bífida, anencefalia), pré-eclâmpsia, descolamento de placenta, restrição de crescimento fetal."></p>
+  <p class="i18n"
+     data-ru="B12 = 236 пг/мл при повышенном гомоцистеине = подтверждённый функциональный дефицит, несмотря на формальное «попадание в референс»."
+     data-en="B12 = 236 pg/mL with elevated homocysteine = confirmed functional deficiency despite being &quot;in range.&quot;"
+     data-pt="B12 = 236 pg/mL com homocisteína elevada = deficiência funcional confirmada, apesar de estar &quot;dentro da referência.&quot;"></p>
+  <ul>
+    <li class="i18n" data-ru="Метилкобаламин (активный B12) 1000–5000 мкг/день" data-en="Methylcobalamin (active B12) 1000–5000 µg/day" data-pt="Metilcobalamina (B12 ativa) 1000–5000 µg/dia"></li>
+    <li class="i18n" data-ru="L-метилфолат (5-MTHF) 800–1000 мкг/день (НЕ обычная фолиевая кислота)" data-en="L-methylfolate (5-MTHF) 800–1000 µg/day (NOT regular folic acid)" data-pt="L-metilfolato (5-MTHF) 800–1000 µg/dia (NÃO ácido fólico convencional)"></li>
+    <li class="i18n" data-ru="Пиридоксин (B6) 25–50 мг/день" data-en="Pyridoxine (B6) 25–50 mg/day" data-pt="Piridoxina (B6) 25–50 mg/dia"></li>
+    <li class="i18n" data-ru="Тест гена MTHFR (C677T и A1298C)" data-en="MTHFR genetic test (C677T and A1298C)" data-pt="Teste genético MTHFR (C677T e A1298C)"></li>
+    <li class="i18n" data-ru="Контроль гомоцистеина через 6–8 недель. Цель: <10 мкмоль/л" data-en="Recheck homocysteine in 6–8 weeks. Target: <10 µmol/L" data-pt="Recontrole da homocisteína em 6–8 semanas. Meta: <10 µmol/L"></li>
+  </ul>
+</div>
+
+<!-- ===== MISSING TESTS ===== -->
+<div class="section" id="missing">
+  <h2 class="section-title i18n" data-ru="Недостающие обследования для естественного зачатия" data-en="Missing Tests for Natural Conception" data-pt="Exames Faltantes para Concepção Natural"></h2>
+  <p class="i18n"
+     data-ru="Обследование было рассчитано на ЭКО, при котором часть этапов обходится процедурой. Для естественного зачатия необходимы дополнительные проверки:"
+     data-en="The workup was designed for IVF, where some steps are bypassed by the procedure. For natural conception, additional checks are needed:"
+     data-pt="Os exames foram planejados para FIV, onde alguns passos são contornados pelo procedimento. Para concepção natural, verificações adicionais são necessárias:"></p>
+
+  <div class="finding finding-warning" style="margin-top: 16px;">
+    <div class="finding-title i18n" data-ru="Проходимость маточных труб (ГСГ)" data-en="Tubal Patency (HSG)" data-pt="Permeabilidade Tubária (HSG)"></div>
+    <p class="i18n"
+       data-ru="Трубы — единственный путь встречи яйцеклетки и сперматозоида при естественном зачатии. Гистероскопия показала только устья труб, но не их проходимость по всей длине (~10 см). Нужна гистеросальпингография (ГСГ) или соно-ГСГ, после лечения эндометрита и ИМП. На 5–11 день цикла."
+       data-en="Tubes are the only path for egg-sperm meeting in natural conception. Hysteroscopy only showed tubal ostia, not patency along the full ~10 cm length. Need HSG or sonoHSG after treating endometritis and UTI. Cycle day 5–11."
+       data-pt="As tubas são o único caminho para o encontro do óvulo com o espermatozoide na concepção natural. A histeroscopia mostrou apenas os óstios tubários, não a permeabilidade ao longo dos ~10 cm. Necessária HSG ou sono-HSG após tratar endometrite e ITU. Dia 5–11 do ciclo."></p>
   </div>
 
-  <!-- Blood Tests -->
-  <div class="card" id="blood">
-    <h2>Blood Tests (10 Feb 2026)</h2>
-    <p><strong>Laboratory:</strong> Laborat&oacute;rio de Corr&ecirc;as, Cascatinha &mdash; Petr&oacute;polis, RJ</p>
-
-    <h3>Complete Blood Count</h3>
-    <table>
-      <tr><th>Parameter</th><th>Result</th><th>Reference</th><th>Status</th></tr>
-      <tr><td>Erythrocytes</td><td>4.6 &times;10&sup6;/&mu;L</td><td>3.8&ndash;5.6</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>Hemoglobin</td><td>14.0 g/dL</td><td>11.6&ndash;17.0</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>Hematocrit</td><td>39%</td><td>35&ndash;50</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>MCV</td><td>85 fL</td><td>79&ndash;98</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>MCH</td><td>30 pg</td><td>26&ndash;35</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>MCHC</td><td>36 g/dL</td><td>30&ndash;38</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>RDW</td><td>12%</td><td>10&ndash;15</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>Leukocytes</td><td>5,430/mm&sup3;</td><td>2,800&ndash;11,000</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>Platelets</td><td>332,000/mm&sup3;</td><td>100,000&ndash;450,000</td><td><span class="val-ok">Normal</span></td></tr>
-    </table>
-
-    <h3>Metabolic Panel</h3>
-    <table>
-      <tr><th>Parameter</th><th>Result</th><th>Reference</th><th>Status</th></tr>
-      <tr><td>Fasting Glucose</td><td>98 mg/dL</td><td>60&ndash;99</td><td><span class="val-borderline">Upper limit</span></td></tr>
-      <tr><td>HbA1c</td><td>4.8%</td><td>&lt;5.7%</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>Estimated Avg Glucose</td><td>91.1 mg/dL</td><td>&mdash;</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>Urea</td><td>23 mg/dL</td><td>10&ndash;50</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>Creatinine</td><td>0.8 mg/dL</td><td>0.5&ndash;1.2</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>Uric Acid</td><td>5.8 mg/dL</td><td>2.6&ndash;6.0</td><td><span class="val-borderline">Upper limit</span></td></tr>
-      <tr><td>AST (TGO)</td><td>14 U/L</td><td>&lt;35</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>ALT (TGP)</td><td>10 U/L</td><td>&lt;55</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>LDH</td><td>153 U/L</td><td>120&ndash;246</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>Total Protein</td><td>7.3 g/dL</td><td>6.6&ndash;8.3</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>Albumin</td><td>4.7 g/dL</td><td>3.5&ndash;5.0</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>Globulin</td><td>2.6 g/dL</td><td>2.0&ndash;3.5</td><td><span class="val-ok">Normal</span></td></tr>
-    </table>
-
-    <h3>Lipid Profile</h3>
-    <table>
-      <tr><th>Parameter</th><th>Result</th><th>Ideal</th><th>Status</th></tr>
-      <tr><td>Total Cholesterol</td><td>236 mg/dL</td><td>&lt;200</td><td><span class="val-high">Elevated</span></td></tr>
-      <tr><td>HDL</td><td>71 mg/dL</td><td>&gt;45</td><td><span class="val-ok">Good</span></td></tr>
-      <tr><td>LDL</td><td>144 mg/dL</td><td>&lt;100</td><td><span class="val-high">Elevated</span></td></tr>
-      <tr><td>VLDL</td><td>21 mg/dL</td><td>&lt;30</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>Triglycerides</td><td>109 mg/dL</td><td>&lt;150</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>Non-HDL Cholesterol</td><td>165 mg/dL</td><td>&lt;130</td><td><span class="val-high">Elevated</span></td></tr>
-      <tr><td>Total/HDL Ratio</td><td>3.3</td><td>&lt;4.8</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>LDL/HDL Ratio</td><td>2.0</td><td>&lt;3.0</td><td><span class="val-ok">Normal</span></td></tr>
-    </table>
-
-    <h3>Key Markers</h3>
-    <table>
-      <tr><th>Parameter</th><th>Result</th><th>Reference</th><th>Status</th></tr>
-      <tr><td>Ferritin</td><td>43.6 ng/mL</td><td>10&ndash;291</td><td><span class="val-borderline">Suboptimal for fertility (&gt;50&ndash;70 preferred)</span></td></tr>
-      <tr><td><strong>Homocysteine</strong></td><td><strong>18.1 &mu;mol/L</strong></td><td><strong>3.7&ndash;13.9</strong></td><td><span class="badge badge-red">ELEVATED</span></td></tr>
-    </table>
-
-    <h3>Thyroid</h3>
-    <table>
-      <tr><th>Parameter</th><th>Result</th><th>Reference</th><th>Status</th></tr>
-      <tr><td>TSH</td><td>1.65 &mu;IU/mL</td><td>0.27&ndash;4.70</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>Free T4</td><td>1.17 ng/dL</td><td>0.70&ndash;1.90</td><td><span class="val-ok">Normal</span></td></tr>
-    </table>
-
-    <h3>Vitamins</h3>
-    <table>
-      <tr><th>Parameter</th><th>Result</th><th>Reference</th><th>Status</th></tr>
-      <tr><td>Vitamin D (25-OH)</td><td>36.7 ng/mL</td><td>&gt;30</td><td><span class="val-ok">Adequate</span></td></tr>
-      <tr><td><strong>Vitamin B12</strong></td><td><strong>236 pg/mL</strong></td><td><strong>211&ndash;911</strong></td><td><span class="badge badge-orange">Low-normal (functional deficiency with elevated homocysteine)</span></td></tr>
-    </table>
-
-    <h3>Reproductive Hormones (Follicular Phase)</h3>
-    <table>
-      <tr><th>Parameter</th><th>Result</th><th>Reference (Follicular)</th><th>Status</th></tr>
-      <tr><td>FSH</td><td>8.47 mIU/mL</td><td>2.50&ndash;10.20</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>LH</td><td>3.95 mIU/mL</td><td>1.90&ndash;12.50</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>Estradiol</td><td>61.3 pg/mL</td><td>19.5&ndash;144.2</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>Prolactin</td><td>6.56 ng/mL</td><td>2.8&ndash;29.2</td><td><span class="val-ok">Normal</span></td></tr>
-    </table>
+  <div class="finding finding-warning">
+    <div class="finding-title i18n" data-ru="Спермограмма" data-en="Semen Analysis" data-pt="Espermograma"></div>
+    <p class="i18n"
+       data-ru="Кариотип (46,XY) проверяет только хромосомы, НЕ качество спермы. Мужской фактор — причина 40–50% бесплодия. Нужен полный анализ (критерии ВОЗ 2021): объём, концентрация, подвижность, морфология, MAR-тест. Воздержание 3–5 дней."
+       data-en="Karyotype (46,XY) only checks chromosomes, NOT sperm quality. Male factor accounts for 40–50% of infertility. Need full analysis (WHO 2021): volume, concentration, motility, morphology, MAR test. 3–5 days abstinence."
+       data-pt="O cariótipo (46,XY) verifica apenas os cromossomos, NÃO a qualidade do esperma. Fator masculino representa 40–50% da infertilidade. Necessária análise completa (OMS 2021): volume, concentração, motilidade, morfologia, teste MAR. 3–5 dias de abstinência."></p>
   </div>
 
-  <!-- Infection Screening -->
-  <div class="card" id="infections">
-    <h2>Infection Screening (10 Feb 2026)</h2>
-    <div class="alert alert-green">
-      <strong>All screening tests negative. Immunity present for toxoplasmosis, rubella, and CMV.</strong>
-    </div>
-    <table>
-      <tr><th>Test</th><th>Result</th><th>Interpretation</th></tr>
-      <tr><td>Hepatitis B (HBsAg)</td><td>Non-reactive (0.03)</td><td><span class="val-ok">Negative</span></td></tr>
-      <tr><td>Hepatitis B (anti-HBc IgM)</td><td>Non-reactive (0.12)</td><td><span class="val-ok">Negative</span></td></tr>
-      <tr><td>Hepatitis B (anti-HBc IgG)</td><td>Non-reactive</td><td><span class="val-ok">Negative</span></td></tr>
-      <tr><td>Hepatitis B (anti-HBc Total)</td><td>Non-reactive</td><td><span class="val-ok">Negative</span></td></tr>
-      <tr><td>Hepatitis C (anti-HCV)</td><td>Non-reactive</td><td><span class="val-ok">Negative</span></td></tr>
-      <tr><td>HIV I &amp; II</td><td>Non-reactive (0.45)</td><td><span class="val-ok">Negative</span></td></tr>
-      <tr><td>HTLV I &amp; II</td><td>Non-reactive</td><td><span class="val-ok">Negative</span></td></tr>
-      <tr><td>Syphilis (VDRL)</td><td>Non-reactive</td><td><span class="val-ok">Negative</span></td></tr>
-      <tr><td>Toxoplasmosis IgG</td><td>Reactive (34.9 IU/mL)</td><td><span class="val-ok">Immune (past infection)</span></td></tr>
-      <tr><td>Toxoplasmosis IgM</td><td>Non-reactive (3 UA/mL)</td><td><span class="val-ok">No active infection</span></td></tr>
-      <tr><td>Rubella IgG</td><td>Reactive (27 U/mL)</td><td><span class="val-ok">Immune</span></td></tr>
-      <tr><td>Rubella IgM</td><td>Non-reactive (10 UA/mL)</td><td><span class="val-ok">No active infection</span></td></tr>
-      <tr><td>CMV IgG</td><td>Reactive (67 U/mL)</td><td><span class="val-ok">Immune (past infection)</span></td></tr>
-      <tr><td>CMV IgM</td><td>Non-reactive (6.8 U/mL)</td><td><span class="val-ok">No active infection</span></td></tr>
-    </table>
+  <div class="finding finding-warning">
+    <div class="finding-title i18n" data-ru="АМГ (антимюллеров гормон)" data-en="AMH (Anti-Müllerian Hormone)" data-pt="HAM (Hormônio Anti-Mülleriano)"></div>
+    <p class="i18n"
+       data-ru="Золотой стандарт оценки овариального резерва. ФСГ 8.47 — приемлемо, но грубый показатель. В 38 лет АМГ критически важен: если хороший (>1.0–1.5 нг/мл) — время на естественные попытки есть; если низкий (<0.5–1.0) — стоит рассмотреть заморозку яйцеклеток. Можно сдать в любой день цикла."
+       data-en="Gold standard for ovarian reserve assessment. FSH 8.47 is acceptable but crude. At 38, AMH is critical: if good (>1.0–1.5 ng/mL) — time for natural attempts; if low (<0.5–1.0) — consider egg freezing. Can be tested any cycle day."
+       data-pt="Padrão-ouro para avaliação da reserva ovariana. FSH 8.47 é aceitável, mas grosseiro. Aos 38 anos, HAM é crítico: se bom (>1.0–1.5 ng/mL) — tempo para tentativas naturais; se baixo (<0.5–1.0) — considerar congelamento de óvulos. Pode ser feito em qualquer dia do ciclo."></p>
   </div>
+</div>
 
-  <!-- Thrombophilia -->
-  <div class="card" id="thrombophilia">
-    <h2>Thrombophilia Screening (10 Feb 2026)</h2>
-    <div class="alert alert-green">
-      <strong>All tests negative. No inherited thrombophilia. No antiphospholipid syndrome.</strong>
+<!-- ===== ACTION PLAN ===== -->
+<div class="section" id="plan">
+  <h2 class="section-title i18n" data-ru="Пошаговый план действий" data-en="Step-by-Step Action Plan" data-pt="Plano de Ação Passo a Passo"></h2>
+  <div class="timeline">
+    <div class="tl-step">
+      <div class="tl-when i18n" data-ru="Сейчас (ближайшие 2 недели)" data-en="Now (next 2 weeks)" data-pt="Agora (próximas 2 semanas)"></div>
+      <ul>
+        <li class="i18n" data-ru="Начать витамины: метилкобаламин + метилфолат + B6" data-en="Start vitamins: methylcobalamin + methylfolate + B6" data-pt="Iniciar vitaminas: metilcobalamina + metilfolato + B6"></li>
+        <li class="i18n" data-ru="Пролечить ИМП, если ещё не пролечена" data-en="Treat UTI if not already treated" data-pt="Tratar ITU se ainda não tratada"></li>
+        <li class="i18n" data-ru="Записать Ивана на спермограмму" data-en="Schedule spermogram for Ivan" data-pt="Agendar espermograma para Ivan"></li>
+        <li class="i18n" data-ru="Сдать АМГ (любой день цикла)" data-en="Test AMH (any cycle day)" data-pt="Fazer HAM (qualquer dia do ciclo)"></li>
+        <li class="i18n" data-ru="Обсудить с врачом лечение эндометрита + тест MTHFR" data-en="Discuss endometritis treatment + MTHFR test with doctor" data-pt="Discutir tratamento de endometrite + teste MTHFR com médica"></li>
+      </ul>
     </div>
-    <table>
-      <tr><th>Test</th><th>Result</th><th>Reference</th><th>Status</th></tr>
-      <tr><td>Anticardiolipin IgG</td><td>1.2 APL-U/mL</td><td>&lt;14</td><td><span class="val-ok">Negative</span></td></tr>
-      <tr><td>Anticardiolipin IgM</td><td>&lt;1.7 MPL-U/mL</td><td>&lt;10</td><td><span class="val-ok">Negative</span></td></tr>
-      <tr><td>Lupus Anticoagulant</td><td>Absent</td><td>Absent</td><td><span class="val-ok">Negative</span></td></tr>
-      <tr><td>Factor V Leiden</td><td>Negative &mdash; Wild type</td><td>Negative</td><td><span class="val-ok">No mutation</span></td></tr>
-      <tr><td>Prothrombin G20210A</td><td>Negative &mdash; Wild type</td><td>Negative</td><td><span class="val-ok">No mutation</span></td></tr>
-      <tr><td>Protein S (functional)</td><td>122.7%</td><td>63.5&ndash;149.6%</td><td><span class="val-ok">Normal</span></td></tr>
-      <tr><td>Protein C (functional)</td><td>146%</td><td>70&ndash;140%</td><td><span class="val-borderline">Slightly above (clinically insignificant)</span></td></tr>
-      <tr><td>Antithrombin III</td><td>100%</td><td>83&ndash;128%</td><td><span class="val-ok">Normal</span></td></tr>
-    </table>
-  </div>
-
-  <!-- Urine -->
-  <div class="card" id="urine">
-    <h2>Urinalysis &amp; Culture</h2>
-
-    <h3>First Collection (13 Feb 2026)</h3>
-    <table>
-      <tr><th>Parameter</th><th>Result</th><th>Reference</th></tr>
-      <tr><td>Leukocytes</td><td><span class="val-high">149/&mu;L</span></td><td>0&ndash;27</td></tr>
-      <tr><td>Nitrites</td><td><span class="val-high">Positive</span></td><td>Negative</td></tr>
-      <tr><td>Red blood cells</td><td>2/&mu;L</td><td>0&ndash;27</td></tr>
-      <tr><td>Culture</td><td colspan="2">Polymicrobial growth &mdash; analysis not possible, new sample recommended</td></tr>
-    </table>
-
-    <h3>Second Collection (10 Mar 2026)</h3>
-    <table>
-      <tr><th>Parameter</th><th>Result</th><th>Reference</th></tr>
-      <tr><td>pH</td><td>6.5</td><td>&mdash;</td></tr>
-      <tr><td>Density</td><td>1.011</td><td>&mdash;</td></tr>
-      <tr><td>Leukocytes</td><td>5/&mu;L</td><td>0&ndash;27</td></tr>
-      <tr><td>Nitrites</td><td><span class="val-high">Positive</span></td><td>Negative</td></tr>
-      <tr><td>Red blood cells</td><td>5/&mu;L</td><td>0&ndash;27</td></tr>
-    </table>
-    <div class="alert alert-red">
-      <strong>Culture: Escherichia coli &gt;100,000 CFU/mL</strong>
-      Significant urinary tract infection confirmed. See antibiogram in Key Problems section above.
+    <div class="tl-step">
+      <div class="tl-when i18n" data-ru="Недели 2–4" data-en="Weeks 2–4" data-pt="Semanas 2–4"></div>
+      <ul>
+        <li class="i18n" data-ru="Курс доксициклина (14 дней)" data-en="Doxycycline course (14 days)" data-pt="Curso de doxiciclina (14 dias)"></li>
+        <li class="i18n" data-ru="Начать препарат железа (бисглицинат)" data-en="Start iron supplementation (bisglycinate)" data-pt="Iniciar suplementação de ferro (bisglicinato)"></li>
+        <li class="i18n" data-ru="Получить результаты спермограммы и АМГ" data-en="Get spermogram and AMH results" data-pt="Obter resultados do espermograma e HAM"></li>
+      </ul>
+    </div>
+    <div class="tl-step">
+      <div class="tl-when i18n" data-ru="Недели 6–8" data-en="Weeks 6–8" data-pt="Semanas 6–8"></div>
+      <ul>
+        <li class="i18n" data-ru="Контроль гомоцистеина (цель <10)" data-en="Recheck homocysteine (target <10)" data-pt="Recontrole da homocisteína (meta <10)"></li>
+        <li class="i18n" data-ru="Контрольная биопсия/гистероскопия — подтвердить излечение эндометрита" data-en="Control biopsy/hysteroscopy — confirm endometritis resolved" data-pt="Biópsia/histeroscopia de controle — confirmar resolução da endometrite"></li>
+        <li class="i18n" data-ru="ГСГ (проходимость труб) — после излечения эндометрита и ИМП, на 5–11 день цикла" data-en="HSG (tubal patency) — after endometritis + UTI resolved, cycle day 5–11" data-pt="HSG (permeabilidade tubária) — após resolução de endometrite e ITU, dia 5–11 do ciclo"></li>
+      </ul>
+    </div>
+    <div class="tl-step">
+      <div class="tl-when i18n" data-ru="Месяцы 2–3 (после решения всех проблем)" data-en="Months 2–3 (once everything resolved)" data-pt="Meses 2–3 (após resolver tudo)"></div>
+      <ul>
+        <li class="i18n" data-ru="Начать активные попытки естественного зачатия" data-en="Begin active natural conception attempts" data-pt="Iniciar tentativas ativas de concepção natural"></li>
+        <li class="i18n" data-ru="Отслеживание овуляции: тесты ЛГ + фолликулометрия (УЗИ) первые 2–3 цикла" data-en="Track ovulation: LH tests + folliculometry (ultrasound) for first 2–3 cycles" data-pt="Monitorar ovulação: testes LH + foliculometria (ultrassom) nos primeiros 2–3 ciclos"></li>
+      </ul>
+    </div>
+    <div class="tl-step">
+      <div class="tl-when i18n" data-ru="Месяц 9 (6 месяцев активных попыток)" data-en="Month 9 (6 months of active trying)" data-pt="Mês 9 (6 meses de tentativas ativas)"></div>
+      <ul>
+        <li class="i18n" data-ru="Если не получилось — пересмотреть стратегию, рассмотреть ЭКО" data-en="If not successful — reassess strategy, consider IVF" data-pt="Se não obtiver sucesso — reavaliar estratégia, considerar FIV"></li>
+      </ul>
     </div>
   </div>
+</div>
 
-  <!-- Breast Ultrasound -->
-  <div class="card" id="breast">
-    <h2>Breast Ultrasound (28 Jan 2026)</h2>
-    <p><strong>Facility:</strong> CheckUp Cl&iacute;nica</p>
-    <div class="alert alert-green">
-      <strong>BI-RADS 2 &mdash; Benign finding. No concern.</strong>
-    </div>
+<!-- ===== MRI ===== -->
+<div class="section" id="mri">
+  <h2 class="section-title i18n" data-ru="МРТ малого таза (27.01.2026)" data-en="Pelvic MRI (27 Jan 2026)" data-pt="RM Pélvica (27/01/2026)"></h2>
+  <p><strong class="i18n" data-ru="Клиника:" data-en="Facility:" data-pt="Clínica:"></strong> Centro de Imagem UNIFASE, Petrópolis, RJ</p>
+  <p><strong class="i18n" data-ru="Показание:" data-en="Indication:" data-pt="Indicação:"></strong> <span class="i18n" data-ru="Эндометриоз? Аденомиоз?" data-en="Endometriosis? Adenomyosis?" data-pt="Endometriose? Adenomiose?"></span></p>
+  <div class="finding finding-good" style="margin: 16px 0;">
+    <div class="finding-title i18n" data-ru="Заключение: без патологий. Эндометриоза и аденомиоза нет." data-en="Conclusion: No pathology. No endometriosis. No adenomyosis." data-pt="Conclusão: Sem patologias. Sem endometriose. Sem adenomiose."></div>
+  </div>
+  <details>
+    <summary class="i18n" data-ru="Подробные результаты" data-en="Full findings" data-pt="Resultados detalhados"></summary>
     <ul>
-      <li>Skin: no changes</li>
-      <li>Breast tissue: heterogeneous echotexture</li>
-      <li>Simple cyst in superolateral quadrant of left breast: 4.4 &times; 2.3 mm</li>
-      <li>Axillary lymph nodes: normal appearance bilaterally</li>
+      <li class="i18n" data-ru="Матка в антеверсии, нормальной формы, 8.0 × 4.4 × 6.3 см, объём 116.4 см³" data-en="Uterus in anteversion, normal shape, 8.0 × 4.4 × 6.3 cm, volume 116.4 cm³" data-pt="Útero em anteversão, forma normal, 8.0 × 4.4 × 6.3 cm, volume 116.4 cm³"></li>
+      <li class="i18n" data-ru="Редкие мелкие интрамуральные очаги <10 мм — мелкие лейомиомы FIGO 4 или сокращения миометрия. Клинически незначимы." data-en="Rare small intramural foci <10 mm — small leiomyomas (FIGO 4) or myometrial contractions. Clinically insignificant." data-pt="Raros pequenos focos intramurais <10 mm — pequenos leiomiomas (FIGO 4) ou contrações miometriais. Clinicamente insignificantes."></li>
+      <li class="i18n" data-ru="Левый яичник 4.2 см³ с жёлтым телом 2.0 см. Правый яичник 4.0 см³" data-en="Left ovary 4.2 cm³ with corpus luteum 2.0 cm. Right ovary 4.0 cm³" data-pt="Ovário esquerdo 4.2 cm³ com corpo lúteo 2.0 cm. Ovário direito 4.0 cm³"></li>
+      <li class="i18n" data-ru="Множественные мелкие фолликулы билатерально до 15 мм" data-en="Multiple small bilateral follicles up to 15 mm" data-pt="Múltiplos pequenos folículos bilaterais até 15 mm"></li>
+      <li class="i18n" data-ru="Эндометриом нет. Трубы без дилатации. Нет инфильтративного эндометриоза." data-en="No endometriomas. Tubes not dilated. No infiltrative endometriosis." data-pt="Sem endometriomas. Tubas sem dilatação. Sem endometriose infiltrativa."></li>
     </ul>
-    <p><em>Recommendation: complement with mammography/MRI at clinical discretion.</em></p>
-  </div>
+  </details>
+</div>
 
-  <!-- Karyotype -->
-  <div class="card" id="karyotype">
-    <h2>Karyotype &mdash; Ivan Stepanov (10 Feb 2026)</h2>
-    <p><strong>Indication:</strong> In vitro fertilization</p>
-    <p><strong>Method:</strong> G-banding (GTW), 500-band resolution. 20 metaphases evaluated, 6 karyotyped.</p>
-    <div class="alert alert-green">
-      <strong>Result: 46,XY &mdash; Normal male karyotype. No abnormalities.</strong>
-    </div>
-  </div>
+<!-- ===== HYSTEROSCOPY ===== -->
+<div class="section" id="hysteroscopy">
+  <h2 class="section-title i18n" data-ru="Гистероскопия (21.01.2026)" data-en="Hysteroscopy (21 Jan 2026)" data-pt="Histeroscopia (21/01/2026)"></h2>
+  <p><strong class="i18n" data-ru="Врач:" data-en="Physician:" data-pt="Médico:"></strong> Dr. Diler P. Da Silva</p>
+  <table>
+    <tr><th class="i18n" data-ru="Структура" data-en="Structure" data-pt="Estrutura"></th><th class="i18n" data-ru="Результат" data-en="Finding" data-pt="Achado"></th></tr>
+    <tr><td class="i18n" data-ru="Шейка матки" data-en="Uterine cervix" data-pt="Colo uterino"></td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+    <tr><td class="i18n" data-ru="Цервикальный канал" data-en="Cervical canal" data-pt="Canal cervical"></td><td class="ok i18n" data-ru="Нормальный калибр" data-en="Normal caliber" data-pt="Calibre normal"></td></tr>
+    <tr><td class="i18n" data-ru="Внутренний зев" data-en="Internal os" data-pt="Orifício interno"></td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+    <tr><td class="i18n" data-ru="Полость матки" data-en="Uterine cavity" data-pt="Cavidade uterina"></td><td class="ok i18n" data-ru="Нормальная форма и объём" data-en="Normal shape and volume" data-pt="Forma e volume normais"></td></tr>
+    <tr><td class="i18n" data-ru="Устья маточных труб" data-en="Tubal ostia" data-pt="Óstios tubários"></td><td class="ok i18n" data-ru="Визуализированы, реактивны" data-en="Visualized, reactive" data-pt="Visualizados, reativos"></td></tr>
+    <tr><td class="i18n" data-ru="Эндометрий" data-en="Endometrium" data-pt="Endométrio"></td><td class="high i18n" data-ru="Признаки хронического эндометрита" data-en="Chronic endometritis signs" data-pt="Sinais de endometrite crônica"></td></tr>
+  </table>
 
-  <!-- Age Factor -->
-  <div class="card">
-    <h2>Age Consideration</h2>
-    <p>Anna is 38 years old. Key fertility realities at this age:</p>
-    <ul>
-      <li>Fertility declines accelerated after 35, more sharply after 37&ndash;38</li>
-      <li>Oocyte quality decreases (more chromosomal abnormalities)</li>
-      <li>Per-cycle conception probability: ~10&ndash;15% (vs. ~25&ndash;30% at age 25)</li>
-      <li>Natural conception is absolutely possible but requires optimized conditions</li>
-    </ul>
-    <div class="alert alert-blue">
-      <strong>Strategy:</strong> Remove all modifiable barriers (endometritis, homocysteine, UTI), verify prerequisites (tubal patency, sperm quality, ovarian reserve), then pursue timed natural conception with ovulation tracking. If unsuccessful after 6 months, reassess and consider IVF.
-    </div>
-  </div>
+  <h3 class="i18n" data-ru="Гистология биопсии эндометрия" data-en="Endometrial Biopsy Histology" data-pt="Histologia da Biópsia Endometrial"></h3>
+  <p><strong class="i18n" data-ru="Лаборатория:" data-en="Laboratory:" data-pt="Laboratório:"></strong> DB Diagnósticos, Rio de Janeiro</p>
+  <p class="i18n"
+     data-ru="Заключение: эндометрий пролиферативного типа, без атипий. Примечание: стандартная гистология может не выявить хронический эндометрит — необходима иммуногистохимия CD138."
+     data-en="Conclusion: proliferative endometrium, no atypias. Note: standard histology may miss chronic endometritis — CD138 immunohistochemistry is needed."
+     data-pt="Conclusão: endométrio proliferativo, sem atipias. Nota: histologia padrão pode não detectar endometrite crônica — imuno-histoquímica CD138 é necessária."></p>
+</div>
 
-  <!-- Monitoring Items -->
-  <div class="card">
-    <h2>Items to Monitor</h2>
-    <table>
-      <tr><th>Item</th><th>Current Value</th><th>Action</th></tr>
-      <tr><td>Ferritin</td><td>43.6 ng/mL</td><td>Iron bisglycinate 25&ndash;30 mg/day + vitamin C. Target &gt;50&ndash;70</td></tr>
-      <tr><td>Total Cholesterol / LDL</td><td>236 / 144 mg/dL</td><td>Diet (reduce saturated fats, increase fiber, omega-3). Statins contraindicated during conception/pregnancy</td></tr>
-      <tr><td>Uric Acid</td><td>5.8 mg/dL</td><td>Monitor during pregnancy (preeclampsia risk factor). Reduce red meat, increase water</td></tr>
-      <tr><td>Fasting Glucose</td><td>98 mg/dL</td><td>HbA1c 4.8% is reassuring. Monitor during pregnancy (gestational diabetes screening)</td></tr>
-    </table>
-  </div>
+<!-- ===== BLOOD TESTS ===== -->
+<div class="section" id="blood">
+  <h2 class="section-title i18n" data-ru="Анализы крови (10.02.2026)" data-en="Blood Tests (10 Feb 2026)" data-pt="Exames de Sangue (10/02/2026)"></h2>
+  <p><strong class="i18n" data-ru="Лаборатория:" data-en="Laboratory:" data-pt="Laboratório:"></strong> Laboratório de Corrêas, Cascatinha — Petrópolis, RJ</p>
 
-  <!-- Positive Results -->
-  <div class="card">
-    <h2>Favorable Results</h2>
-    <div class="two-col">
-      <div class="alert alert-green"><strong>MRI:</strong> No endometriosis, no adenomyosis</div>
-      <div class="alert alert-green"><strong>Thrombophilia:</strong> All tests negative</div>
-      <div class="alert alert-green"><strong>Hormones:</strong> All normal, adequate ovarian reserve for age</div>
-      <div class="alert alert-green"><strong>Thyroid:</strong> TSH and T4 optimal</div>
-      <div class="alert alert-green"><strong>Infections:</strong> All screening negative</div>
-      <div class="alert alert-green"><strong>Immunity:</strong> Toxoplasmosis, rubella, CMV</div>
-      <div class="alert alert-green"><strong>Karyotypes:</strong> Both partners normal</div>
-      <div class="alert alert-green"><strong>Uterine cavity:</strong> Normal shape and volume</div>
-    </div>
-  </div>
+  <h3 class="i18n" data-ru="Общий анализ крови" data-en="Complete Blood Count" data-pt="Hemograma Completo"></h3>
+  <table>
+    <tr><th class="i18n" data-ru="Показатель" data-en="Parameter" data-pt="Parâmetro"></th><th class="i18n" data-ru="Результат" data-en="Result" data-pt="Resultado"></th><th class="i18n" data-ru="Референс" data-en="Reference" data-pt="Referência"></th><th class="i18n" data-ru="Статус" data-en="Status" data-pt="Status"></th></tr>
+    <tr><td class="i18n" data-ru="Гемоглобин" data-en="Hemoglobin" data-pt="Hemoglobina"></td><td>14.0 g/dL</td><td>11.6–17.0</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+    <tr><td class="i18n" data-ru="Гематокрит" data-en="Hematocrit" data-pt="Hematócrito"></td><td>39%</td><td>35–50</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+    <tr><td class="i18n" data-ru="Лейкоциты" data-en="Leukocytes" data-pt="Leucócitos"></td><td>5 430/mm³</td><td>2 800–11 000</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+    <tr><td class="i18n" data-ru="Тромбоциты" data-en="Platelets" data-pt="Plaquetas"></td><td>332 000/mm³</td><td>100 000–450 000</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+  </table>
 
-  <div class="disclaimer">
-    <strong>Disclaimer:</strong> This report is an AI-assisted analysis of medical examination results. It does not constitute a medical diagnosis or replace professional medical advice. All findings and recommendations should be discussed with the treating physician. Treatment decisions should be made by qualified healthcare professionals based on the complete clinical picture.
+  <h3 class="i18n" data-ru="Биохимия" data-en="Metabolic Panel" data-pt="Bioquímica"></h3>
+  <table>
+    <tr><th class="i18n" data-ru="Показатель" data-en="Parameter" data-pt="Parâmetro"></th><th class="i18n" data-ru="Результат" data-en="Result" data-pt="Resultado"></th><th class="i18n" data-ru="Референс" data-en="Reference" data-pt="Referência"></th><th class="i18n" data-ru="Статус" data-en="Status" data-pt="Status"></th></tr>
+    <tr><td class="i18n" data-ru="Глюкоза натощак" data-en="Fasting Glucose" data-pt="Glicose em Jejum"></td><td>98 mg/dL</td><td>60–99</td><td class="borderline i18n" data-ru="Верхняя граница" data-en="Upper limit" data-pt="Limite superior"></td></tr>
+    <tr><td>HbA1c</td><td>4.8%</td><td>&lt;5.7%</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+    <tr><td class="i18n" data-ru="Мочевина" data-en="Urea" data-pt="Ureia"></td><td>23 mg/dL</td><td>10–50</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+    <tr><td class="i18n" data-ru="Креатинин" data-en="Creatinine" data-pt="Creatinina"></td><td>0.8 mg/dL</td><td>0.5–1.2</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+    <tr><td class="i18n" data-ru="Мочевая кислота" data-en="Uric Acid" data-pt="Ácido Úrico"></td><td>5.8 mg/dL</td><td>2.6–6.0</td><td class="borderline i18n" data-ru="Верхняя граница" data-en="Upper limit" data-pt="Limite superior"></td></tr>
+    <tr><td>АСТ (TGO)</td><td>14 U/L</td><td>&lt;35</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+    <tr><td>АЛТ (TGP)</td><td>10 U/L</td><td>&lt;55</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+    <tr><td class="i18n" data-ru="ЛДГ" data-en="LDH" data-pt="DHL"></td><td>153 U/L</td><td>120–246</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+    <tr><td class="i18n" data-ru="Общий белок" data-en="Total Protein" data-pt="Proteínas Totais"></td><td>7.3 g/dL</td><td>6.6–8.3</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+    <tr><td class="i18n" data-ru="Альбумин" data-en="Albumin" data-pt="Albumina"></td><td>4.7 g/dL</td><td>3.5–5.0</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+  </table>
+
+  <h3 class="i18n" data-ru="Липидный профиль" data-en="Lipid Profile" data-pt="Perfil Lipídico"></h3>
+  <table>
+    <tr><th class="i18n" data-ru="Показатель" data-en="Parameter" data-pt="Parâmetro"></th><th class="i18n" data-ru="Результат" data-en="Result" data-pt="Resultado"></th><th class="i18n" data-ru="Идеально" data-en="Ideal" data-pt="Ideal"></th><th class="i18n" data-ru="Статус" data-en="Status" data-pt="Status"></th></tr>
+    <tr><td class="i18n" data-ru="Холестерин общий" data-en="Total Cholesterol" data-pt="Colesterol Total"></td><td>236 mg/dL</td><td>&lt;200</td><td class="high i18n" data-ru="Повышен" data-en="Elevated" data-pt="Elevado"></td></tr>
+    <tr><td>HDL</td><td>71 mg/dL</td><td>&gt;45</td><td class="ok i18n" data-ru="Норма" data-en="Good" data-pt="Bom"></td></tr>
+    <tr><td>LDL</td><td>144 mg/dL</td><td>&lt;100</td><td class="high i18n" data-ru="Повышен" data-en="Elevated" data-pt="Elevado"></td></tr>
+    <tr><td>VLDL</td><td>21 mg/dL</td><td>&lt;30</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+    <tr><td class="i18n" data-ru="Триглицериды" data-en="Triglycerides" data-pt="Triglicerídeos"></td><td>109 mg/dL</td><td>&lt;150</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+  </table>
+
+  <h3 class="i18n" data-ru="Ключевые маркеры" data-en="Key Markers" data-pt="Marcadores-Chave"></h3>
+  <table>
+    <tr><th class="i18n" data-ru="Показатель" data-en="Parameter" data-pt="Parâmetro"></th><th class="i18n" data-ru="Результат" data-en="Result" data-pt="Resultado"></th><th class="i18n" data-ru="Референс" data-en="Reference" data-pt="Referência"></th><th class="i18n" data-ru="Статус" data-en="Status" data-pt="Status"></th></tr>
+    <tr><td class="i18n" data-ru="Ферритин" data-en="Ferritin" data-pt="Ferritina"></td><td>43.6 ng/mL</td><td>10–291</td><td class="borderline i18n" data-ru="Субоптимально (цель >50–70)" data-en="Suboptimal (target >50–70)" data-pt="Subótimo (meta >50–70)"></td></tr>
+    <tr><td class="i18n" data-ru="Гомоцистеин" data-en="Homocysteine" data-pt="Homocisteína"></td><td><strong>18.1 µmol/L</strong></td><td>3.7–13.9</td><td><span class="tag tag-red i18n" data-ru="ПОВЫШЕН" data-en="ELEVATED" data-pt="ELEVADO"></span></td></tr>
+  </table>
+
+  <h3 class="i18n" data-ru="Щитовидная железа" data-en="Thyroid" data-pt="Tireoide"></h3>
+  <table>
+    <tr><th class="i18n" data-ru="Показатель" data-en="Parameter" data-pt="Parâmetro"></th><th class="i18n" data-ru="Результат" data-en="Result" data-pt="Resultado"></th><th class="i18n" data-ru="Референс" data-en="Reference" data-pt="Referência"></th><th class="i18n" data-ru="Статус" data-en="Status" data-pt="Status"></th></tr>
+    <tr><td class="i18n" data-ru="ТТГ" data-en="TSH" data-pt="TSH"></td><td>1.65 µIU/mL</td><td>0.27–4.70</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+    <tr><td class="i18n" data-ru="Т4 свободный" data-en="Free T4" data-pt="T4 Livre"></td><td>1.17 ng/dL</td><td>0.70–1.90</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+  </table>
+
+  <h3 class="i18n" data-ru="Витамины" data-en="Vitamins" data-pt="Vitaminas"></h3>
+  <table>
+    <tr><th class="i18n" data-ru="Показатель" data-en="Parameter" data-pt="Parâmetro"></th><th class="i18n" data-ru="Результат" data-en="Result" data-pt="Resultado"></th><th class="i18n" data-ru="Референс" data-en="Reference" data-pt="Referência"></th><th class="i18n" data-ru="Статус" data-en="Status" data-pt="Status"></th></tr>
+    <tr><td class="i18n" data-ru="Витамин D" data-en="Vitamin D" data-pt="Vitamina D"></td><td>36.7 ng/mL</td><td>&gt;30</td><td class="ok i18n" data-ru="Достаточный" data-en="Adequate" data-pt="Adequado"></td></tr>
+    <tr><td class="i18n" data-ru="Витамин B12" data-en="Vitamin B12" data-pt="Vitamina B12"></td><td><strong>236 pg/mL</strong></td><td>211–911</td><td><span class="tag tag-orange i18n" data-ru="Нижняя граница" data-en="Low-normal" data-pt="Limite inferior"></span></td></tr>
+  </table>
+
+  <h3 class="i18n" data-ru="Репродуктивные гормоны (фолликулярная фаза)" data-en="Reproductive Hormones (Follicular Phase)" data-pt="Hormônios Reprodutivos (Fase Folicular)"></h3>
+  <table>
+    <tr><th class="i18n" data-ru="Показатель" data-en="Parameter" data-pt="Parâmetro"></th><th class="i18n" data-ru="Результат" data-en="Result" data-pt="Resultado"></th><th class="i18n" data-ru="Референс" data-en="Reference" data-pt="Referência"></th><th class="i18n" data-ru="Статус" data-en="Status" data-pt="Status"></th></tr>
+    <tr><td class="i18n" data-ru="ФСГ" data-en="FSH" data-pt="FSH"></td><td>8.47 mIU/mL</td><td>2.50–10.20</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+    <tr><td class="i18n" data-ru="ЛГ" data-en="LH" data-pt="LH"></td><td>3.95 mIU/mL</td><td>1.90–12.50</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+    <tr><td class="i18n" data-ru="Эстрадиол" data-en="Estradiol" data-pt="Estradiol"></td><td>61.3 pg/mL</td><td>19.5–144.2</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+    <tr><td class="i18n" data-ru="Пролактин" data-en="Prolactin" data-pt="Prolactina"></td><td>6.56 ng/mL</td><td>2.8–29.2</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+  </table>
+</div>
+
+<!-- ===== INFECTIONS ===== -->
+<div class="section" id="infections">
+  <h2 class="section-title i18n" data-ru="Инфекционный скрининг (10.02.2026)" data-en="Infection Screening (10 Feb 2026)" data-pt="Triagem Infecciosa (10/02/2026)"></h2>
+  <div class="finding finding-good" style="margin-bottom: 16px;">
+    <div class="finding-title i18n" data-ru="Все тесты отрицательны. Иммунитет к токсоплазмозу, краснухе и ЦМВ." data-en="All tests negative. Immunity to toxoplasmosis, rubella, and CMV." data-pt="Todos os testes negativos. Imunidade para toxoplasmose, rubéola e CMV."></div>
   </div>
+  <table>
+    <tr><th class="i18n" data-ru="Тест" data-en="Test" data-pt="Teste"></th><th class="i18n" data-ru="Результат" data-en="Result" data-pt="Resultado"></th><th class="i18n" data-ru="Интерпретация" data-en="Interpretation" data-pt="Interpretação"></th></tr>
+    <tr><td>Hepatitis B (HBsAg)</td><td>Non-reactive</td><td class="ok i18n" data-ru="Отрицательно" data-en="Negative" data-pt="Negativo"></td></tr>
+    <tr><td>Hepatitis B (anti-HBc)</td><td>Non-reactive</td><td class="ok i18n" data-ru="Отрицательно" data-en="Negative" data-pt="Negativo"></td></tr>
+    <tr><td>Hepatitis C (anti-HCV)</td><td>Non-reactive</td><td class="ok i18n" data-ru="Отрицательно" data-en="Negative" data-pt="Negativo"></td></tr>
+    <tr><td>HIV I/II</td><td>Non-reactive</td><td class="ok i18n" data-ru="Отрицательно" data-en="Negative" data-pt="Negativo"></td></tr>
+    <tr><td>HTLV I/II</td><td>Non-reactive</td><td class="ok i18n" data-ru="Отрицательно" data-en="Negative" data-pt="Negativo"></td></tr>
+    <tr><td>Syphilis (VDRL)</td><td>Non-reactive</td><td class="ok i18n" data-ru="Отрицательно" data-en="Negative" data-pt="Negativo"></td></tr>
+    <tr><td class="i18n" data-ru="Токсоплазмоз IgG" data-en="Toxoplasmosis IgG" data-pt="Toxoplasmose IgG"></td><td>Reactive (34.9)</td><td class="ok i18n" data-ru="Иммунитет" data-en="Immune" data-pt="Imune"></td></tr>
+    <tr><td class="i18n" data-ru="Токсоплазмоз IgM" data-en="Toxoplasmosis IgM" data-pt="Toxoplasmose IgM"></td><td>Non-reactive</td><td class="ok i18n" data-ru="Нет активной инфекции" data-en="No active infection" data-pt="Sem infecção ativa"></td></tr>
+    <tr><td class="i18n" data-ru="Краснуха IgG" data-en="Rubella IgG" data-pt="Rubéola IgG"></td><td>Reactive (27)</td><td class="ok i18n" data-ru="Иммунитет" data-en="Immune" data-pt="Imune"></td></tr>
+    <tr><td class="i18n" data-ru="Краснуха IgM" data-en="Rubella IgM" data-pt="Rubéola IgM"></td><td>Non-reactive</td><td class="ok i18n" data-ru="Нет активной инфекции" data-en="No active infection" data-pt="Sem infecção ativa"></td></tr>
+    <tr><td class="i18n" data-ru="ЦМВ IgG" data-en="CMV IgG" data-pt="CMV IgG"></td><td>Reactive (67)</td><td class="ok i18n" data-ru="Иммунитет" data-en="Immune" data-pt="Imune"></td></tr>
+    <tr><td class="i18n" data-ru="ЦМВ IgM" data-en="CMV IgM" data-pt="CMV IgM"></td><td>Non-reactive</td><td class="ok i18n" data-ru="Нет активной инфекции" data-en="No active infection" data-pt="Sem infecção ativa"></td></tr>
+  </table>
+</div>
+
+<!-- ===== THROMBOPHILIA ===== -->
+<div class="section" id="thrombophilia">
+  <h2 class="section-title i18n" data-ru="Тромбофилический скрининг (10.02.2026)" data-en="Thrombophilia Screening (10 Feb 2026)" data-pt="Triagem de Trombofilia (10/02/2026)"></h2>
+  <div class="finding finding-good" style="margin-bottom: 16px;">
+    <div class="finding-title i18n" data-ru="Все тесты отрицательны. Наследственных тромбофилий и антифосфолипидного синдрома нет." data-en="All tests negative. No inherited thrombophilia. No antiphospholipid syndrome." data-pt="Todos os testes negativos. Sem trombofilia hereditária. Sem síndrome antifosfolípide."></div>
+  </div>
+  <table>
+    <tr><th class="i18n" data-ru="Тест" data-en="Test" data-pt="Teste"></th><th class="i18n" data-ru="Результат" data-en="Result" data-pt="Resultado"></th><th class="i18n" data-ru="Референс" data-en="Reference" data-pt="Referência"></th><th class="i18n" data-ru="Статус" data-en="Status" data-pt="Status"></th></tr>
+    <tr><td class="i18n" data-ru="Антикардиолипин IgG" data-en="Anticardiolipin IgG" data-pt="Anticardiolipina IgG"></td><td>1.2 APL-U/mL</td><td>&lt;14</td><td class="ok i18n" data-ru="Отрицательно" data-en="Negative" data-pt="Negativo"></td></tr>
+    <tr><td class="i18n" data-ru="Антикардиолипин IgM" data-en="Anticardiolipin IgM" data-pt="Anticardiolipina IgM"></td><td>&lt;1.7 MPL-U/mL</td><td>&lt;10</td><td class="ok i18n" data-ru="Отрицательно" data-en="Negative" data-pt="Negativo"></td></tr>
+    <tr><td class="i18n" data-ru="Волчаночный антикоагулянт" data-en="Lupus Anticoagulant" data-pt="Anticoagulante Lúpico"></td><td class="i18n" data-ru="Отсутствует" data-en="Absent" data-pt="Ausente"></td><td>—</td><td class="ok i18n" data-ru="Отрицательно" data-en="Negative" data-pt="Negativo"></td></tr>
+    <tr><td class="i18n" data-ru="Фактор V Лейдена" data-en="Factor V Leiden" data-pt="Fator V Leiden"></td><td class="i18n" data-ru="Дикий тип" data-en="Wild type" data-pt="Tipo selvagem"></td><td>—</td><td class="ok i18n" data-ru="Мутации нет" data-en="No mutation" data-pt="Sem mutação"></td></tr>
+    <tr><td class="i18n" data-ru="Мутация протромбина G20210A" data-en="Prothrombin G20210A" data-pt="Protrombina G20210A"></td><td class="i18n" data-ru="Дикий тип" data-en="Wild type" data-pt="Tipo selvagem"></td><td>—</td><td class="ok i18n" data-ru="Мутации нет" data-en="No mutation" data-pt="Sem mutação"></td></tr>
+    <tr><td class="i18n" data-ru="Протеин S" data-en="Protein S" data-pt="Proteína S"></td><td>122.7%</td><td>63.5–149.6%</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+    <tr><td class="i18n" data-ru="Протеин C" data-en="Protein C" data-pt="Proteína C"></td><td>146%</td><td>70–140%</td><td class="borderline i18n" data-ru="Чуть выше нормы" data-en="Slightly above" data-pt="Levemente acima"></td></tr>
+    <tr><td class="i18n" data-ru="Антитромбин III" data-en="Antithrombin III" data-pt="Antitrombina III"></td><td>100%</td><td>83–128%</td><td class="ok i18n" data-ru="Норма" data-en="Normal" data-pt="Normal"></td></tr>
+  </table>
+</div>
+
+<!-- ===== URINE ===== -->
+<div class="section" id="urine">
+  <h2 class="section-title i18n" data-ru="Анализ мочи и посев" data-en="Urinalysis &amp; Culture" data-pt="Urinálise e Urocultura"></h2>
+
+  <h3 class="i18n" data-ru="Первый забор (13.02.2026)" data-en="First Collection (13 Feb 2026)" data-pt="Primeira Coleta (13/02/2026)"></h3>
+  <table>
+    <tr><th class="i18n" data-ru="Показатель" data-en="Parameter" data-pt="Parâmetro"></th><th class="i18n" data-ru="Результат" data-en="Result" data-pt="Resultado"></th><th class="i18n" data-ru="Референс" data-en="Reference" data-pt="Referência"></th></tr>
+    <tr><td class="i18n" data-ru="Лейкоциты" data-en="Leukocytes" data-pt="Leucócitos"></td><td class="high">149/µL</td><td>0–27</td></tr>
+    <tr><td class="i18n" data-ru="Нитриты" data-en="Nitrites" data-pt="Nitritos"></td><td class="high">+</td><td>–</td></tr>
+    <tr><td class="i18n" data-ru="Посев" data-en="Culture" data-pt="Urocultura"></td><td colspan="2" class="i18n" data-ru="Полимикробный рост — анализ невозможен, рекомендовано повторить" data-en="Polymicrobial growth — analysis not possible, new sample recommended" data-pt="Crescimento polimicrobiano — análise impossível, nova amostra recomendada"></td></tr>
+  </table>
+
+  <h3 class="i18n" data-ru="Второй забор (10.03.2026)" data-en="Second Collection (10 Mar 2026)" data-pt="Segunda Coleta (10/03/2026)"></h3>
+  <table>
+    <tr><th class="i18n" data-ru="Показатель" data-en="Parameter" data-pt="Parâmetro"></th><th class="i18n" data-ru="Результат" data-en="Result" data-pt="Resultado"></th><th class="i18n" data-ru="Референс" data-en="Reference" data-pt="Referência"></th></tr>
+    <tr><td class="i18n" data-ru="Лейкоциты" data-en="Leukocytes" data-pt="Leucócitos"></td><td>5/µL</td><td>0–27</td></tr>
+    <tr><td class="i18n" data-ru="Нитриты" data-en="Nitrites" data-pt="Nitritos"></td><td class="high">+</td><td>–</td></tr>
+    <tr><td class="i18n" data-ru="Посев" data-en="Culture" data-pt="Urocultura"></td><td colspan="2"><strong>Escherichia coli &gt;100 000 CFU/mL</strong></td></tr>
+  </table>
+</div>
+
+<!-- ===== BREAST ===== -->
+<div class="section" id="breast">
+  <h2 class="section-title i18n" data-ru="УЗИ молочных желёз (28.01.2026)" data-en="Breast Ultrasound (28 Jan 2026)" data-pt="Ultrassom de Mama (28/01/2026)"></h2>
+  <p><strong class="i18n" data-ru="Клиника:" data-en="Facility:" data-pt="Clínica:"></strong> CheckUp Clínica</p>
+  <div class="finding finding-good" style="margin: 12px 0;">
+    <div class="finding-title">BI-RADS 2</div>
+    <p class="i18n"
+       data-ru="Доброкачественная находка. Простая киста верхне-наружного квадранта левой груди, 4.4 × 2.3 мм. Рекомендовано дополнить маммографией/МРТ."
+       data-en="Benign finding. Simple cyst in superolateral quadrant of left breast, 4.4 × 2.3 mm. Recommended to complement with mammography/MRI."
+       data-pt="Achado benigno. Cisto simples no quadrante superolateral da mama esquerda, 4.4 × 2.3 mm. Recomendado complementar com mamografia/RM."></p>
+  </div>
+</div>
+
+<!-- ===== KARYOTYPE ===== -->
+<div class="section" id="karyotype">
+  <h2 class="section-title i18n" data-ru="Кариотип — Иван Степанов (10.02.2026)" data-en="Karyotype — Ivan Stepanov (10 Feb 2026)" data-pt="Cariótipo — Ivan Stepanov (10/02/2026)"></h2>
+  <p class="i18n"
+     data-ru="Метод: G-бэндинг (GTW), разрешение 500 бэндов. 20 метафаз оценено, 6 кариотипировано."
+     data-en="Method: G-banding (GTW), 500-band resolution. 20 metaphases evaluated, 6 karyotyped."
+     data-pt="Método: bandeamento G (GTW), resolução de 500 bandas. 20 metáfases avaliadas, 6 cariotipadas."></p>
+  <div class="finding finding-good" style="margin: 12px 0;">
+    <div class="finding-title i18n" data-ru="46,XY — нормальный мужской кариотип. Аномалий нет." data-en="46,XY — Normal male karyotype. No abnormalities." data-pt="46,XY — Cariótipo masculino normal. Sem anormalidades."></div>
+  </div>
+</div>
+
+<!-- ===== AGE ===== -->
+<div class="section">
+  <h2 class="section-title i18n" data-ru="Возрастной фактор" data-en="Age Consideration" data-pt="Fator Idade"></h2>
+  <p class="i18n"
+     data-ru="Анне 38 лет. Ключевые реалии фертильности в этом возрасте:"
+     data-en="Anna is 38 years old. Key fertility realities at this age:"
+     data-pt="Anna tem 38 anos. Realidades-chave de fertilidade nesta idade:"></p>
+  <ul>
+    <li class="i18n" data-ru="Фертильность снижается ускоренно после 35, особенно резко после 37–38" data-en="Fertility declines accelerate after 35, more sharply after 37–38" data-pt="A fertilidade diminui de forma acelerada após 35 anos, mais acentuadamente após 37–38"></li>
+    <li class="i18n" data-ru="Качество ооцитов снижается (больше хромосомных аномалий)" data-en="Oocyte quality decreases (more chromosomal abnormalities)" data-pt="A qualidade dos oócitos diminui (mais anomalias cromossômicas)"></li>
+    <li class="i18n" data-ru="Вероятность зачатия за цикл: ~10–15% (против ~25–30% в 25 лет)" data-en="Per-cycle conception probability: ~10–15% (vs. ~25–30% at age 25)" data-pt="Probabilidade de concepção por ciclo: ~10–15% (vs. ~25–30% aos 25 anos)"></li>
+    <li class="i18n" data-ru="Естественное зачатие абсолютно возможно, но требует оптимизации всех условий" data-en="Natural conception is absolutely possible but requires optimized conditions" data-pt="A concepção natural é absolutamente possível, mas requer condições otimizadas"></li>
+  </ul>
+  <div class="finding finding-neutral" style="margin-top: 14px;">
+    <div class="finding-title i18n" data-ru="Стратегия" data-en="Strategy" data-pt="Estratégia"></div>
+    <p class="i18n"
+       data-ru="Устранить все модифицируемые барьеры (эндометрит, гомоцистеин, ИМП), проверить предпосылки (проходимость труб, качество спермы, овариальный резерв), затем — прицельные попытки с отслеживанием овуляции. Если неуспешно через 6 месяцев — пересмотр в сторону ЭКО."
+       data-en="Remove all modifiable barriers (endometritis, homocysteine, UTI), verify prerequisites (tubal patency, sperm quality, ovarian reserve), then pursue timed natural conception with ovulation tracking. If unsuccessful after 6 months, reassess toward IVF."
+       data-pt="Remover todas as barreiras modificáveis (endometrite, homocisteína, ITU), verificar pré-requisitos (permeabilidade tubária, qualidade espermática, reserva ovariana), depois tentativas naturais com monitoramento da ovulação. Se sem sucesso após 6 meses, reavaliar para FIV."></p>
+  </div>
+</div>
+
+<!-- ===== MONITORING ===== -->
+<div class="section">
+  <h2 class="section-title i18n" data-ru="Мониторинг" data-en="Items to Monitor" data-pt="Itens para Monitorar"></h2>
+  <table>
+    <tr><th class="i18n" data-ru="Показатель" data-en="Item" data-pt="Item"></th><th class="i18n" data-ru="Сейчас" data-en="Current" data-pt="Atual"></th><th class="i18n" data-ru="Что делать" data-en="Action" data-pt="Ação"></th></tr>
+    <tr><td class="i18n" data-ru="Ферритин" data-en="Ferritin" data-pt="Ferritina"></td><td>43.6 ng/mL</td><td class="i18n" data-ru="Железа бисглицинат 25–30 мг/д + вит. С. Цель >50–70" data-en="Iron bisglycinate 25–30 mg/day + vit. C. Target >50–70" data-pt="Bisglicinato de ferro 25–30 mg/dia + vit. C. Meta >50–70"></td></tr>
+    <tr><td class="i18n" data-ru="Холестерин / LDL" data-en="Cholesterol / LDL" data-pt="Colesterol / LDL"></td><td>236 / 144</td><td class="i18n" data-ru="Диета, омега-3, движение. Статины противопоказаны при зачатии/беременности" data-en="Diet, omega-3, exercise. Statins contraindicated during conception/pregnancy" data-pt="Dieta, ômega-3, exercício. Estatinas contraindicadas na concepção/gravidez"></td></tr>
+    <tr><td class="i18n" data-ru="Мочевая кислота" data-en="Uric Acid" data-pt="Ácido Úrico"></td><td>5.8 mg/dL</td><td class="i18n" data-ru="Мониторинг при беременности (фактор риска преэклампсии)" data-en="Monitor during pregnancy (preeclampsia risk factor)" data-pt="Monitorar na gravidez (fator de risco para pré-eclâmpsia)"></td></tr>
+    <tr><td class="i18n" data-ru="Глюкоза натощак" data-en="Fasting Glucose" data-pt="Glicose em Jejum"></td><td>98 mg/dL</td><td class="i18n" data-ru="HbA1c 4.8% — успокаивает. Мониторинг при беременности (гестационный диабет)" data-en="HbA1c 4.8% is reassuring. Monitor during pregnancy (gestational diabetes)" data-pt="HbA1c 4.8% é tranquilizador. Monitorar na gravidez (diabetes gestacional)"></td></tr>
+  </table>
+</div>
+
+<!-- ===== FAVORABLE ===== -->
+<div class="section">
+  <h2 class="section-title i18n" data-ru="Благоприятные результаты" data-en="Favorable Results" data-pt="Resultados Favoráveis"></h2>
+  <div class="good-grid">
+    <div class="good-item"><strong class="i18n" data-ru="МРТ:" data-en="MRI:" data-pt="RM:"></strong> <span class="i18n" data-ru="нет эндометриоза/аденомиоза" data-en="no endometriosis/adenomyosis" data-pt="sem endometriose/adenomiose"></span></div>
+    <div class="good-item"><strong class="i18n" data-ru="Тромбофилии:" data-en="Thrombophilia:" data-pt="Trombofilia:"></strong> <span class="i18n" data-ru="все отрицательно" data-en="all negative" data-pt="todos negativos"></span></div>
+    <div class="good-item"><strong class="i18n" data-ru="Гормоны:" data-en="Hormones:" data-pt="Hormônios:"></strong> <span class="i18n" data-ru="всё в норме" data-en="all normal" data-pt="todos normais"></span></div>
+    <div class="good-item"><strong class="i18n" data-ru="Щитовидная:" data-en="Thyroid:" data-pt="Tireoide:"></strong> <span class="i18n" data-ru="ТТГ и Т4 оптимальны" data-en="TSH and T4 optimal" data-pt="TSH e T4 ótimos"></span></div>
+    <div class="good-item"><strong class="i18n" data-ru="Инфекции:" data-en="Infections:" data-pt="Infecções:"></strong> <span class="i18n" data-ru="скрининг чист" data-en="all screening negative" data-pt="triagem limpa"></span></div>
+    <div class="good-item"><strong class="i18n" data-ru="Иммунитет:" data-en="Immunity:" data-pt="Imunidade:"></strong> <span class="i18n" data-ru="токсо/краснуха/ЦМВ" data-en="toxo/rubella/CMV" data-pt="toxo/rubéola/CMV"></span></div>
+    <div class="good-item"><strong class="i18n" data-ru="Кариотипы:" data-en="Karyotypes:" data-pt="Cariótipos:"></strong> <span class="i18n" data-ru="оба в норме" data-en="both normal" data-pt="ambos normais"></span></div>
+    <div class="good-item"><strong class="i18n" data-ru="Полость матки:" data-en="Uterine cavity:" data-pt="Cavidade uterina:"></strong> <span class="i18n" data-ru="нормальная" data-en="normal" data-pt="normal"></span></div>
+  </div>
+</div>
+
+<!-- ===== PHOTO DOCUMENTS ===== -->
+<div class="section" id="photos">
+  <h2 class="section-title i18n" data-ru="Оригиналы медицинских документов" data-en="Original Medical Documents" data-pt="Documentos Médicos Originais"></h2>
+  <p class="i18n"
+     data-ru="Фотографии всех оригинальных результатов обследований. Нажмите на изображение для увеличения."
+     data-en="Photos of all original examination results. Click an image to enlarge."
+     data-pt="Fotos de todos os resultados originais dos exames. Clique para ampliar."></p>
+
+  <div class="gallery-section">
+    <div class="gallery-label i18n" data-ru="МРТ малого таза (8 фото)" data-en="Pelvic MRI (8 photos)" data-pt="RM Pélvica (8 fotos)"></div>
+    <div class="gallery-grid" id="gallery-mri"></div>
+  </div>
+  <div class="gallery-section">
+    <div class="gallery-label i18n" data-ru="Гистероскопия (2 фото)" data-en="Hysteroscopy (2 photos)" data-pt="Histeroscopia (2 fotos)"></div>
+    <div class="gallery-grid" id="gallery-hystero"></div>
+  </div>
+  <div class="gallery-section">
+    <div class="gallery-label i18n" data-ru="Гистология эндометрия (1 фото)" data-en="Endometrial Histology (1 photo)" data-pt="Histologia Endometrial (1 foto)"></div>
+    <div class="gallery-grid" id="gallery-histo"></div>
+  </div>
+  <div class="gallery-section">
+    <div class="gallery-label i18n" data-ru="Анализы крови (38 фото)" data-en="Blood Tests (38 photos)" data-pt="Exames de Sangue (38 fotos)"></div>
+    <div class="gallery-grid" id="gallery-blood"></div>
+  </div>
+  <div class="gallery-section">
+    <div class="gallery-label i18n" data-ru="Анализ мочи и посев (6 фото)" data-en="Urinalysis &amp; Culture (6 photos)" data-pt="Urinálise e Urocultura (6 fotos)"></div>
+    <div class="gallery-grid" id="gallery-urine"></div>
+  </div>
+  <div class="gallery-section">
+    <div class="gallery-label i18n" data-ru="УЗИ молочных желёз (2 фото)" data-en="Breast Ultrasound (2 photos)" data-pt="Ultrassom de Mama (2 fotos)"></div>
+    <div class="gallery-grid" id="gallery-breast"></div>
+  </div>
+  <div class="gallery-section">
+    <div class="gallery-label i18n" data-ru="Кариотип Ивана (2 фото)" data-en="Ivan's Karyotype (2 photos)" data-pt="Cariótipo do Ivan (2 fotos)"></div>
+    <div class="gallery-grid" id="gallery-karyo"></div>
+  </div>
+</div>
+
+<!-- ===== DISCLAIMER ===== -->
+<div class="disclaimer">
+  <strong class="i18n" data-ru="Отказ от ответственности:" data-en="Disclaimer:" data-pt="Aviso:"></strong>
+  <span class="i18n"
+     data-ru="Этот отчёт — анализ результатов обследований с помощью ИИ. Он не является медицинским диагнозом и не заменяет консультацию врача. Все находки и рекомендации должны обсуждаться с лечащим врачом."
+     data-en="This report is an AI-assisted analysis of medical examination results. It does not constitute a medical diagnosis or replace professional medical advice. All findings should be discussed with the treating physician."
+     data-pt="Este relatório é uma análise assistida por IA dos resultados de exames médicos. Não constitui diagnóstico médico nem substitui orientação profissional. Todos os achados devem ser discutidos com o médico responsável."></span>
+</div>
 
 </div>
 
 <footer>
-  <p>Generated April 28, 2026 &bull; AI-assisted medical report analysis</p>
+  <p class="i18n" data-ru="Отчёт от 28 апреля 2026 · Анализ с помощью ИИ" data-en="Report generated April 28, 2026 · AI-assisted analysis" data-pt="Relatório gerado em 28 de abril de 2026 · Análise assistida por IA"></p>
 </footer>
+
+<script>
+// === i18n ===
+let currentLang = 'ru';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.trim() === lang.toUpperCase()));
+  document.querySelectorAll('.i18n').forEach(el => {
+    const text = el.getAttribute('data-' + lang);
+    if (text) el.innerHTML = text;
+  });
+}
+
+// === Gallery data ===
+const galleries = {
+  'gallery-mri': {
+    path: 'photos/МРТ_малого_таза/',
+    files: [
+      ['01_заключение_стр1.jpg', 'Заключение стр. 1', 'Conclusion p.1', 'Conclusão p.1'],
+      ['02_заключение_стр2.jpg', 'Заключение стр. 2', 'Conclusion p.2', 'Conclusão p.2'],
+      ['03_снимки_сагиттальные.jpg', 'Сагиттальные снимки', 'Sagittal views', 'Cortes sagitais'],
+      ['04_снимки_корональные.jpg', 'Корональные снимки', 'Coronal views', 'Cortes coronais'],
+      ['05_снимки_аксиальные_T2.jpg', 'Аксиальные T2', 'Axial T2', 'Axiais T2'],
+      ['06_снимки_аксиальные_02.jpg', 'Аксиальные 02', 'Axial 02', 'Axiais 02'],
+      ['07_снимки_аксиальные_03.jpg', 'Аксиальные 03', 'Axial 03', 'Axiais 03'],
+      ['08_снимки_аксиальные_04.jpg', 'Аксиальные 04', 'Axial 04', 'Axiais 04']
+    ]
+  },
+  'gallery-hystero': {
+    path: 'photos/Гистероскопия/',
+    files: [
+      ['01_заключение.jpg', 'Заключение', 'Conclusion', 'Conclusão'],
+      ['02_снимки_устья_труб.jpg', 'Устья маточных труб', 'Tubal ostia', 'Óstios tubários']
+    ]
+  },
+  'gallery-histo': {
+    path: 'photos/Гистология_эндометрия/',
+    files: [
+      ['01_заключение.jpg', 'Заключение гистологии', 'Histology conclusion', 'Conclusão da histologia']
+    ]
+  },
+  'gallery-blood': {
+    path: 'photos/Анализы_крови/',
+    files: [
+      ['01_гемограмма.jpg', 'Гемограмма', 'CBC', 'Hemograma'],
+      ['02_группа_крови_Coombs.jpg', 'Группа крови, Кумбс', 'Blood type, Coombs', 'Tipo sanguíneo, Coombs'],
+      ['03_глюкоза.jpg', 'Глюкоза', 'Glucose', 'Glicose'],
+      ['04_гликированный_гемоглобин.jpg', 'HbA1c', 'HbA1c', 'HbA1c'],
+      ['05_мочевина_креатинин.jpg', 'Мочевина, креатинин', 'Urea, creatinine', 'Ureia, creatinina'],
+      ['06_мочевая_кислота.jpg', 'Мочевая кислота', 'Uric acid', 'Ácido úrico'],
+      ['07_липидный_профиль.jpg', 'Липидный профиль', 'Lipid profile', 'Perfil lipídico'],
+      ['08_АСТ_АЛТ.jpg', 'АСТ/АЛТ', 'AST/ALT', 'AST/ALT'],
+      ['09_ЛДГ.jpg', 'ЛДГ', 'LDH', 'DHL'],
+      ['10_общий_белок_альбумин.jpg', 'Белок, альбумин', 'Protein, albumin', 'Proteína, albumina'],
+      ['11_ферритин_гомоцистеин.jpg', 'Ферритин, гомоцистеин', 'Ferritin, homocysteine', 'Ferritina, homocisteína'],
+      ['12_ТТГ.jpg', 'ТТГ', 'TSH', 'TSH'],
+      ['13_Т4_свободный_витамин_D.jpg', 'Т4, витамин D', 'T4, vitamin D', 'T4, vitamina D'],
+      ['14_B12_ФСГ.jpg', 'B12, ФСГ', 'B12, FSH', 'B12, FSH'],
+      ['15_ЛГ.jpg', 'ЛГ', 'LH', 'LH'],
+      ['16_эстрадиол.jpg', 'Эстрадиол', 'Estradiol', 'Estradiol'],
+      ['17_пролактин.jpg', 'Пролактин', 'Prolactin', 'Prolactina'],
+      ['18_гепатит_B_антитела.jpg', 'Гепатит B антитела', 'Hepatitis B antibodies', 'Anticorpos Hepatite B'],
+      ['19_гепатит_B_антиген.jpg', 'Гепатит B антиген', 'Hepatitis B antigen', 'Antígeno Hepatite B'],
+      ['20_гепатит_C.jpg', 'Гепатит C', 'Hepatitis C', 'Hepatite C'],
+      ['21_ВИЧ.jpg', 'ВИЧ', 'HIV', 'HIV'],
+      ['22_токсоплазмоз_IgG.jpg', 'Токсоплазмоз IgG', 'Toxoplasmosis IgG', 'Toxoplasmose IgG'],
+      ['23_токсоплазмоз_IgM.jpg', 'Токсоплазмоз IgM', 'Toxoplasmosis IgM', 'Toxoplasmose IgM'],
+      ['24_краснуха_IgG.jpg', 'Краснуха IgG', 'Rubella IgG', 'Rubéola IgG'],
+      ['25_краснуха_IgM.jpg', 'Краснуха IgM', 'Rubella IgM', 'Rubéola IgM'],
+      ['26_ЦМВ_IgG.jpg', 'ЦМВ IgG', 'CMV IgG', 'CMV IgG'],
+      ['27_ЦМВ_IgM.jpg', 'ЦМВ IgM', 'CMV IgM', 'CMV IgM'],
+      ['28_сифилис_VDRL.jpg', 'Сифилис VDRL', 'Syphilis VDRL', 'Sífilis VDRL'],
+      ['29_HTLV.jpg', 'HTLV', 'HTLV', 'HTLV'],
+      ['30_антикардиолипин_IgG.jpg', 'Антикардиолипин IgG', 'Anticardiolipin IgG', 'Anticardiolipina IgG'],
+      ['31_антикардиолипин_IgM.jpg', 'Антикардиолипин IgM', 'Anticardiolipin IgM', 'Anticardiolipina IgM'],
+      ['32_волчаночный_антикоагулянт_стр1.jpg', 'Волчаночный антикоагулянт 1', 'Lupus anticoagulant 1', 'Anticoagulante lúpico 1'],
+      ['33_волчаночный_антикоагулянт_стр2.jpg', 'Волчаночный антикоагулянт 2', 'Lupus anticoagulant 2', 'Anticoagulante lúpico 2'],
+      ['34_подпись.jpg', 'Подпись врача', 'Physician signature', 'Assinatura médica'],
+      ['35_мутация_протромбина.jpg', 'Мутация протромбина', 'Prothrombin mutation', 'Mutação da protrombina'],
+      ['36_фактор_V_Лейдена.jpg', 'Фактор V Лейдена', 'Factor V Leiden', 'Fator V Leiden'],
+      ['37_протеин_S_и_C.jpg', 'Протеин S и C', 'Protein S and C', 'Proteína S e C'],
+      ['38_антитромбин_III.jpg', 'Антитромбин III', 'Antithrombin III', 'Antitrombina III']
+    ]
+  },
+  'gallery-urine': {
+    path: 'photos/Анализ_мочи/',
+    files: [
+      ['01_анализ_мочи_13-02-2026.jpg', 'Анализ 13.02.2026', 'Urinalysis 13/02', 'Urinálise 13/02'],
+      ['02_посев_мочи_13-02-2026_полимикробный.jpg', 'Посев 13.02 (полимикробный)', 'Culture 13/02 (polymicrobial)', 'Urocultura 13/02 (polimicrobiana)'],
+      ['03_анализ_мочи_10-03-2026.jpg', 'Анализ 10.03.2026', 'Urinalysis 10/03', 'Urinálise 10/03'],
+      ['04_посев_мочи_10-03-2026_E_coli_стр1.jpg', 'Посев E.coli стр. 1', 'E.coli culture p.1', 'Urocultura E.coli p.1'],
+      ['05_посев_мочи_10-03-2026_E_coli_стр1_копия.jpg', 'Посев E.coli (копия)', 'E.coli culture (copy)', 'Urocultura E.coli (cópia)'],
+      ['06_посев_мочи_10-03-2026_стр2.jpg', 'Посев стр. 2', 'Culture p.2', 'Urocultura p.2']
+    ]
+  },
+  'gallery-breast': {
+    path: 'photos/УЗИ_молочных_желёз/',
+    files: [
+      ['01_заключение.jpg', 'Заключение', 'Conclusion', 'Conclusão'],
+      ['02_снимки.jpg', 'Снимки', 'Images', 'Imagens']
+    ]
+  },
+  'gallery-karyo': {
+    path: 'photos/Кариотип_Иван/',
+    files: [
+      ['01_кариотип_снимок.jpg', 'Кариотип (снимок)', 'Karyotype (image)', 'Cariótipo (imagem)'],
+      ['02_кариотип_заключение.jpg', 'Заключение', 'Conclusion', 'Conclusão']
+    ]
+  }
+};
+
+let allImages = [];
+let lbIndex = 0;
+
+function buildGalleries() {
+  allImages = [];
+  for (const [containerId, data] of Object.entries(galleries)) {
+    const container = document.getElementById(containerId);
+    if (!container) continue;
+    container.innerHTML = '';
+    for (const file of data.files) {
+      const src = data.path + file[0];
+      const langIdx = {ru:1, en:2, pt:3}[currentLang] || 1;
+      const imgIndex = allImages.length;
+      allImages.push({src, captions: [file[1], file[2], file[3]]});
+      const div = document.createElement('div');
+      div.className = 'gallery-thumb';
+      div.onclick = () => openLightbox(imgIndex);
+      div.innerHTML = '<img src="' + src + '" alt="' + file[1] + '" loading="lazy">';
+      container.appendChild(div);
+    }
+  }
+}
+
+function openLightbox(idx) {
+  lbIndex = idx;
+  showLbImage();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function navLightbox(dir) {
+  lbIndex = (lbIndex + dir + allImages.length) % allImages.length;
+  showLbImage();
+}
+
+function showLbImage() {
+  const img = allImages[lbIndex];
+  document.getElementById('lb-img').src = img.src;
+  const langIdx = {ru:0, en:1, pt:2}[currentLang] || 0;
+  document.getElementById('lb-caption').textContent = img.captions[langIdx] + ' (' + (lbIndex+1) + '/' + allImages.length + ')';
+}
+
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') navLightbox(-1);
+  if (e.key === 'ArrowRight') navLightbox(1);
+});
+
+document.getElementById('lightbox').addEventListener('click', e => {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+});
+
+// init
+const origSetLang = setLang;
+setLang = function(lang) {
+  origSetLang(lang);
+  buildGalleries();
+};
+buildGalleries();
+</script>
 
 </body>
 </html>
