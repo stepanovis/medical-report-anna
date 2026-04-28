@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Report — Preconception Workup 2026</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --text: #1a1a2e;
+      --muted: #6c757d;
+      --accent: #2563eb;
+      --red: #dc2626;
+      --orange: #ea580c;
+      --green: #16a34a;
+      --yellow: #ca8a04;
+      --border: #e5e7eb;
+      --red-bg: #fef2f2;
+      --orange-bg: #fff7ed;
+      --green-bg: #f0fdf4;
+      --yellow-bg: #fefce8;
+      --blue-bg: #eff6ff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0;
+    }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+    header {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    header h1 { font-size: 1.8em; margin-bottom: 8px; }
+    header .subtitle { opacity: 0.85; font-size: 1.05em; }
+    header .date { opacity: 0.7; font-size: 0.9em; margin-top: 8px; }
+
+    nav {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    nav .container { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; justify-content: center; }
+    nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.85em;
+      padding: 4px 10px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    nav a:hover { background: var(--blue-bg); }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 28px;
+      margin: 20px 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+    }
+    .card h2 {
+      font-size: 1.3em;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+    }
+    .card h3 { font-size: 1.1em; margin: 18px 0 10px; color: var(--text); }
+
+    .alert {
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin: 16px 0;
+      border-left: 4px solid;
+    }
+    .alert-red { background: var(--red-bg); border-color: var(--red); }
+    .alert-orange { background: var(--orange-bg); border-color: var(--orange); }
+    .alert-green { background: var(--green-bg); border-color: var(--green); }
+    .alert-yellow { background: var(--yellow-bg); border-color: var(--yellow); }
+    .alert-blue { background: var(--blue-bg); border-color: var(--accent); }
+    .alert strong { display: block; margin-bottom: 4px; }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 0.8em;
+      font-weight: 600;
+    }
+    .badge-red { background: var(--red); color: white; }
+    .badge-orange { background: var(--orange); color: white; }
+    .badge-green { background: var(--green); color: white; }
+    .badge-yellow { background: var(--yellow); color: white; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 0.92em;
+    }
+    th, td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    th { background: var(--bg); font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.3px; color: var(--muted); }
+    tr:hover { background: #f9fafb; }
+    .val-high { color: var(--red); font-weight: 600; }
+    .val-borderline { color: var(--orange); font-weight: 600; }
+    .val-ok { color: var(--green); }
+
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 20px;
+      padding: 14px 18px;
+      background: var(--bg);
+      border-radius: 8px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 18px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .timeline-item .time { font-size: 0.8em; color: var(--muted); margin-bottom: 4px; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+
+    .patient-info { display: flex; flex-wrap: wrap; gap: 20px; }
+    .patient-info .info-block { flex: 1; min-width: 200px; }
+    .info-block dt { font-size: 0.8em; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .info-block dd { font-size: 1.05em; font-weight: 500; margin-bottom: 10px; }
+
+    .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 16px 0; }
+    .summary-item {
+      padding: 16px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .summary-item .number { font-size: 1.8em; font-weight: 700; }
+    .summary-item .label { font-size: 0.82em; color: var(--muted); margin-top: 2px; }
+
+    details { margin: 10px 0; }
+    details summary {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 8px 0;
+      color: var(--accent);
+    }
+    details summary:hover { text-decoration: underline; }
+
+    ul { padding-left: 20px; }
+    li { margin: 6px 0; }
+
+    .disclaimer {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 0.85em;
+      color: var(--muted);
+      margin-top: 30px;
+    }
+    footer { text-align: center; padding: 30px; color: var(--muted); font-size: 0.85em; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Preconception Medical Report</h1>
+  <div class="subtitle">Anna Stepanova & Ivan Stepanov</div>
+  <div class="date">Examinations: January — March 2026 | Report generated: April 28, 2026</div>
+</header>
+
+<nav>
+  <div class="container">
+    <a href="#summary">Summary</a>
+    <a href="#action-items">Action Items</a>
+    <a href="#problems">Key Problems</a>
+    <a href="#gaps">Missing Tests</a>
+    <a href="#plan">Action Plan</a>
+    <a href="#mri">MRI</a>
+    <a href="#hysteroscopy">Hysteroscopy</a>
+    <a href="#blood">Blood Tests</a>
+    <a href="#infections">Infections</a>
+    <a href="#thrombophilia">Thrombophilia</a>
+    <a href="#urine">Urine</a>
+    <a href="#breast">Breast</a>
+    <a href="#karyotype">Karyotype</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- Patient Info -->
+  <div class="card" id="patient">
+    <h2>Patient Information</h2>
+    <div class="patient-info">
+      <div class="info-block">
+        <dl>
+          <dt>Patient</dt><dd>Anna Stepanova</dd>
+          <dt>Date of Birth</dt><dd>10 June 1987 (38 years)</dd>
+          <dt>Blood Type</dt><dd>AB Rh+</dd>
+        </dl>
+      </div>
+      <div class="info-block">
+        <dl>
+          <dt>Partner</dt><dd>Ivan Stepanov</dd>
+          <dt>Date of Birth</dt><dd>24 August 1990 (35 years)</dd>
+          <dt>Physician</dt><dd>Dra. Fran&ccedil;oise Quintanilha Padula</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Summary -->
+  <div class="card" id="summary">
+    <h2>Quick Summary</h2>
+    <div class="summary-grid">
+      <div class="summary-item" style="background: var(--red-bg);">
+        <div class="number" style="color: var(--red);">3</div>
+        <div class="label">Issues to Fix</div>
+      </div>
+      <div class="summary-item" style="background: var(--orange-bg);">
+        <div class="number" style="color: var(--orange);">3</div>
+        <div class="label">Missing Tests</div>
+      </div>
+      <div class="summary-item" style="background: var(--yellow-bg);">
+        <div class="number" style="color: var(--yellow);">4</div>
+        <div class="label">Monitor Items</div>
+      </div>
+      <div class="summary-item" style="background: var(--green-bg);">
+        <div class="number" style="color: var(--green);">8</div>
+        <div class="label">All Clear</div>
+      </div>
+    </div>
+
+    <div class="alert alert-green">
+      <strong>Overall Assessment</strong>
+      Most results are favorable. No endometriosis, no thrombophilia, normal hormones, normal karyotypes, clean infection screening. The three issues found (chronic endometritis, elevated homocysteine, UTI) are all treatable within 2 months. Three additional tests are needed specifically because the goal is natural conception rather than IVF.
+    </div>
+  </div>
+
+  <!-- Action Items -->
+  <div class="card" id="action-items">
+    <h2>Critical Action Items</h2>
+
+    <div class="alert alert-red">
+      <strong>1. Chronic Endometritis &mdash; Must Treat Before Conception</strong>
+      Found on hysteroscopy (21 Jan 2026). Reduces implantation probability 2&ndash;3x and increases early miscarriage risk. Treatment: doxycycline 100 mg twice daily &times; 14 days. Confirm resolution with repeat biopsy (CD138 immunohistochemistry). Timeline: ~2 months.
+    </div>
+
+    <div class="alert alert-red">
+      <strong>2. Homocysteine 18.1 &mu;mol/L (normal &lt;13.9) + Low B12</strong>
+      Associated with implantation failure, recurrent miscarriage (2&ndash;3x risk when &gt;15), neural tube defects, preeclampsia. Start immediately: methylcobalamin (B12) 1000&ndash;5000 &mu;g/day + L-methylfolate 800&ndash;1000 &mu;g/day + vitamin B6 25&ndash;50 mg/day. Test MTHFR gene. Recheck homocysteine in 6&ndash;8 weeks. Target: &lt;10.
+    </div>
+
+    <div class="alert alert-red">
+      <strong>3. UTI &mdash; E. coli &gt;100,000 CFU/mL</strong>
+      Found 10 March 2026. Resistant to ampicillin, ciprofloxacin, levofloxacin. Sensitive to nitrofurantoin, fosfomycin, cephalexin, and others. Must be treated before conception attempts. Confirm if already treated; if not, treat per antibiogram.
+    </div>
+
+    <div class="alert alert-orange">
+      <strong>4. Tubal Patency &mdash; NOT TESTED (Critical for Natural Conception)</strong>
+      Hysteroscopy showed tubal ostia look normal, but this is NOT a patency test. For natural conception, the tubes MUST be patent &mdash; this is the only path for egg-sperm meeting. Need HSG (hysterosalpingography) or sonoHSG after treating endometritis and UTI.
+    </div>
+
+    <div class="alert alert-orange">
+      <strong>5. Spermogram &mdash; NOT DONE</strong>
+      Karyotype (46,XY) only checks chromosomes, NOT sperm quality. Male factor accounts for 40&ndash;50% of infertility. Need full semen analysis (WHO 2021 criteria): volume, concentration, motility, morphology, MAR test.
+    </div>
+
+    <div class="alert alert-orange">
+      <strong>6. AMH (Anti-M&uuml;llerian Hormone) &mdash; NOT TESTED</strong>
+      FSH 8.47 is acceptable but AMH is the gold standard for ovarian reserve. At 38, this is critical information: determines how much time is available for natural conception vs. needing assisted reproduction.
+    </div>
+  </div>
+
+  <!-- Key Problems Detail -->
+  <div class="card" id="problems">
+    <h2>Key Problems &mdash; Detailed Analysis</h2>
+
+    <h3>1. Chronic Endometritis</h3>
+    <p>The endometrium is the "soil" where the embryo implants. Chronic inflammation disrupts receptivity. Studies show it reduces implantation rates 2&ndash;3x and is a recognized cause of recurrent pregnancy loss.</p>
+    <p><strong>Diagnosis:</strong> Visual signs on hysteroscopy (Dr. Diler, 21 Jan 2026). Standard histology showed "proliferative endometrium without atypias" but standard H&E staining often misses chronic endometritis. The gold standard is CD138 immunohistochemistry (plasma cell marker).</p>
+    <p><strong>Treatment protocol:</strong></p>
+    <ul>
+      <li>Doxycycline 100 mg &times; 2/day &times; 14 days (some protocols add metronidazole)</li>
+      <li>Post-treatment: repeat biopsy with CD138 or repeat hysteroscopy to confirm resolution</li>
+      <li>Do NOT attempt conception until confirmed cured</li>
+      <li>Total timeline: ~2 months (treatment + recovery + verification)</li>
+    </ul>
+
+    <h3>2. Hyperhomocysteinemia + B12 Deficiency</h3>
+    <p>Homocysteine is metabolized using vitamins B12, folate, and B6. When deficient (or with MTHFR gene polymorphism), homocysteine accumulates.</p>
+    <p><strong>Risks during conception and pregnancy:</strong></p>
+    <ul>
+      <li>Impaired embryo implantation</li>
+      <li>2&ndash;3x increased early miscarriage risk (homocysteine &gt;15)</li>
+      <li>Neural tube defects (spina bifida, anencephaly) &mdash; most dangerous</li>
+      <li>Preeclampsia, placental abruption, fetal growth restriction</li>
+      <li>Impaired oocyte quality</li>
+    </ul>
+    <p><strong>B12 = 236 pg/mL</strong> with elevated homocysteine = confirmed functional deficiency despite being "in range."</p>
+    <p><strong>Action:</strong></p>
+    <ul>
+      <li>Methylcobalamin (active B12) 1000&ndash;5000 &mu;g/day</li>
+      <li>L-methylfolate (5-MTHF) 800&ndash;1000 &mu;g/day (NOT regular folic acid &mdash; may not be metabolized if MTHFR mutation present)</li>
+      <li>Pyridoxine (B6) 25&ndash;50 mg/day</li>
+      <li>MTHFR genetic test (C677T and A1298C)</li>
+      <li>Recheck homocysteine in 6&ndash;8 weeks. Target: &lt;10 &mu;mol/L</li>
+    </ul>
+
+    <h3>3. UTI (E. coli)</h3>
+    <table>
+      <tr><th>Antibiotic</th><th>Sensitivity</th></tr>
+      <tr><td>Ampicillin</td><td><span class="val-high">Resistant</span></td></tr>
+      <tr><td>Ciprofloxacin</td><td><span class="val-high">Resistant</span></td></tr>
+      <tr><td>Levofloxacin</td><td><span class="val-high">Resistant</span></td></tr>
+      <tr><td>Nitrofurantoin</td><td><span class="val-ok">Sensitive</span></td></tr>
+      <tr><td>Fosfomycin</td><td><span class="val-ok">Sensitive</span></td></tr>
+      <tr><td>Cephalexin</td><td><span class="val-ok">Sensitive</span></td></tr>
+      <tr><td>Ceftriaxone</td><td><span class="val-ok">Sensitive</span></td></tr>
+      <tr><td>TMP-SMX</td><td><span class="val-ok">Sensitive</span></td></tr>
+    </table>
+    <p>Untreated UTI in pregnancy = risk of pyelonephritis and preterm labor. Bacteria can ascend to uterus and maintain endometritis.</p>
+  </div>
+
+  <!-- Missing Tests -->
+  <div class="card" id="gaps">
+    <h2>Missing Tests for Natural Conception</h2>
+    <p>The workup was designed for IVF, where some tests are unnecessary because the procedure bypasses them. For natural conception, these are critical:</p>
+
+    <div class="two-col">
+      <div class="alert alert-orange">
+        <strong>Tubal Patency (HSG)</strong>
+        Tubes are the ONLY path for natural fertilization. Hysteroscopy only saw the openings, not patency along the full ~10 cm length. HSG or sonoHSG needed after endometritis/UTI treatment. Day 5&ndash;11 of cycle.
+      </div>
+      <div class="alert alert-orange">
+        <strong>Semen Analysis (Spermogram)</strong>
+        Male factor = 40&ndash;50% of infertility causes. Karyotype checks chromosomes only, not sperm function. Need WHO 2021 analysis: concentration, motility, morphology, MAR test. 3&ndash;5 days abstinence.
+      </div>
+    </div>
+    <div class="alert alert-orange">
+      <strong>AMH (Anti-M&uuml;llerian Hormone)</strong>
+      Gold standard for ovarian reserve. FSH 8.47 is acceptable but crude. At 38, AMH determines strategy: if good (&gt;1.0&ndash;1.5 ng/mL) &mdash; time for natural attempts; if low (&lt;0.5&ndash;1.0) &mdash; consider egg freezing as insurance. Can be tested any cycle day.
+    </div>
+  </div>
+
+  <!-- Action Plan Timeline -->
+  <div class="card" id="plan">
+    <h2>Step-by-Step Action Plan</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">Now (next 2 weeks)</div>
+        <ul>
+          <li>Start vitamins: methylcobalamin + methylfolate + B6</li>
+          <li>Treat UTI if not already treated</li>
+          <li>Schedule spermogram for Ivan</li>
+          <li>Test AMH for Anna (any cycle day)</li>
+          <li>Discuss chronic endometritis treatment + MTHFR test with doctor</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Weeks 2&ndash;4</div>
+        <ul>
+          <li>Doxycycline course for endometritis (14 days)</li>
+          <li>Start iron supplementation (bisglycinate)</li>
+          <li>Get spermogram and AMH results</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Weeks 6&ndash;8</div>
+        <ul>
+          <li>Recheck homocysteine (target &lt;10)</li>
+          <li>Control biopsy/hysteroscopy &mdash; confirm endometritis resolved</li>
+          <li>HSG (tubal patency) &mdash; after endometritis + UTI resolved, cycle day 5&ndash;11</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Months 2&ndash;3 (once everything resolved)</div>
+        <ul>
+          <li>Begin active natural conception attempts</li>
+          <li>Track ovulation: LH tests + folliculometry (ultrasound) for first 2&ndash;3 cycles</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Month 9 (6 months of active trying)</div>
+        <ul>
+          <li>If not successful &mdash; reassess strategy, consider IVF</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MRI -->
+  <div class="card" id="mri">
+    <h2>MRI Pelvis (27 Jan 2026)</h2>
+    <p><strong>Facility:</strong> Centro de Imagem UNIFASE, Petr&oacute;polis, RJ</p>
+    <p><strong>Indication:</strong> Endometriosis? Adenomyosis?</p>
+    <div class="alert alert-green">
+      <strong>Conclusion: No relevant pathological changes. No endometriosis. No adenomyosis.</strong>
+    </div>
+    <details>
+      <summary>Full findings</summary>
+      <ul>
+        <li>Uterus in anteversion, normal shape and contour, 8.0 &times; 4.4 &times; 6.3 cm, volume 116.4 cm&sup3;</li>
+        <li>Rare small intramural myometrial foci &lt;10 mm with T2 hyposignal &mdash; may be small leiomyomas (FIGO 4) or myometrial contractions. Clinically insignificant.</li>
+        <li>No adenomyosis</li>
+        <li>Endometrium centered, normal thickness and signal</li>
+        <li>Naboth cysts on cervix</li>
+        <li>Left ovary 4.2 cm&sup3; with corpus luteum 2.0 cm</li>
+        <li>Right ovary 4.0 cm&sup3;</li>
+        <li>Multiple small bilateral follicles up to 15 mm</li>
+        <li>No endometriomas or hemorrhagic foci</li>
+        <li>Tubes normal signal, no dilation</li>
+        <li>Small physiological free fluid in posterior cul-de-sac</li>
+        <li>Retovaginal space: no infiltrative endometriosis</li>
+        <li>No pelvic lymphadenopathy</li>
+        <li>Pelvic musculature: normal</li>
+      </ul>
+    </details>
+  </div>
+
+  <!-- Hysteroscopy -->
+  <div class="card" id="hysteroscopy">
+    <h2>Hysteroscopy (21 Jan 2026)</h2>
+    <p><strong>Physician:</strong> Dr. Diler P. Da Silva</p>
+    <p><strong>Indication:</strong> Infertility investigation</p>
+    <div class="alert alert-red">
+      <strong>Key finding: Signs of chronic endometritis</strong>
+    </div>
+    <table>
+      <tr><th>Structure</th><th>Finding</th></tr>
+      <tr><td>Uterine cervix</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>Cervical canal</td><td><span class="val-ok">Trophic, normal caliber</span></td></tr>
+      <tr><td>Internal os</td><td><span class="val-ok">Competent, normal</span></td></tr>
+      <tr><td>Uterine cavity</td><td><span class="val-ok">Normal shape and volume</span></td></tr>
+      <tr><td>Tubal ostia</td><td><span class="val-ok">Visualized, reactive</span></td></tr>
+      <tr><td>Endometrium</td><td><span class="val-high">Chronic endometritis signs</span><br>Proliferative pattern, 3&ndash;5 mm, typical vascularization</td></tr>
+    </table>
+    <p>Directed endometrial biopsy performed.</p>
+
+    <h3>Endometrial Biopsy &mdash; Histology (DB Diagn&oacute;sticos)</h3>
+    <p>Fragment 0.2 &times; 0.1 &times; 0.1 cm. <strong>Conclusion: Proliferative endometrium, NO atypias.</strong></p>
+    <p><em>Note: Standard histology may miss chronic endometritis. CD138 immunohistochemistry (plasma cell marker) is the gold standard for confirmation.</em></p>
+  </div>
+
+  <!-- Blood Tests -->
+  <div class="card" id="blood">
+    <h2>Blood Tests (10 Feb 2026)</h2>
+    <p><strong>Laboratory:</strong> Laborat&oacute;rio de Corr&ecirc;as, Cascatinha &mdash; Petr&oacute;polis, RJ</p>
+
+    <h3>Complete Blood Count</h3>
+    <table>
+      <tr><th>Parameter</th><th>Result</th><th>Reference</th><th>Status</th></tr>
+      <tr><td>Erythrocytes</td><td>4.6 &times;10&sup6;/&mu;L</td><td>3.8&ndash;5.6</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>Hemoglobin</td><td>14.0 g/dL</td><td>11.6&ndash;17.0</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>Hematocrit</td><td>39%</td><td>35&ndash;50</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>MCV</td><td>85 fL</td><td>79&ndash;98</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>MCH</td><td>30 pg</td><td>26&ndash;35</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>MCHC</td><td>36 g/dL</td><td>30&ndash;38</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>RDW</td><td>12%</td><td>10&ndash;15</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>Leukocytes</td><td>5,430/mm&sup3;</td><td>2,800&ndash;11,000</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>Platelets</td><td>332,000/mm&sup3;</td><td>100,000&ndash;450,000</td><td><span class="val-ok">Normal</span></td></tr>
+    </table>
+
+    <h3>Metabolic Panel</h3>
+    <table>
+      <tr><th>Parameter</th><th>Result</th><th>Reference</th><th>Status</th></tr>
+      <tr><td>Fasting Glucose</td><td>98 mg/dL</td><td>60&ndash;99</td><td><span class="val-borderline">Upper limit</span></td></tr>
+      <tr><td>HbA1c</td><td>4.8%</td><td>&lt;5.7%</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>Estimated Avg Glucose</td><td>91.1 mg/dL</td><td>&mdash;</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>Urea</td><td>23 mg/dL</td><td>10&ndash;50</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>Creatinine</td><td>0.8 mg/dL</td><td>0.5&ndash;1.2</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>Uric Acid</td><td>5.8 mg/dL</td><td>2.6&ndash;6.0</td><td><span class="val-borderline">Upper limit</span></td></tr>
+      <tr><td>AST (TGO)</td><td>14 U/L</td><td>&lt;35</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>ALT (TGP)</td><td>10 U/L</td><td>&lt;55</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>LDH</td><td>153 U/L</td><td>120&ndash;246</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>Total Protein</td><td>7.3 g/dL</td><td>6.6&ndash;8.3</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>Albumin</td><td>4.7 g/dL</td><td>3.5&ndash;5.0</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>Globulin</td><td>2.6 g/dL</td><td>2.0&ndash;3.5</td><td><span class="val-ok">Normal</span></td></tr>
+    </table>
+
+    <h3>Lipid Profile</h3>
+    <table>
+      <tr><th>Parameter</th><th>Result</th><th>Ideal</th><th>Status</th></tr>
+      <tr><td>Total Cholesterol</td><td>236 mg/dL</td><td>&lt;200</td><td><span class="val-high">Elevated</span></td></tr>
+      <tr><td>HDL</td><td>71 mg/dL</td><td>&gt;45</td><td><span class="val-ok">Good</span></td></tr>
+      <tr><td>LDL</td><td>144 mg/dL</td><td>&lt;100</td><td><span class="val-high">Elevated</span></td></tr>
+      <tr><td>VLDL</td><td>21 mg/dL</td><td>&lt;30</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>Triglycerides</td><td>109 mg/dL</td><td>&lt;150</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>Non-HDL Cholesterol</td><td>165 mg/dL</td><td>&lt;130</td><td><span class="val-high">Elevated</span></td></tr>
+      <tr><td>Total/HDL Ratio</td><td>3.3</td><td>&lt;4.8</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>LDL/HDL Ratio</td><td>2.0</td><td>&lt;3.0</td><td><span class="val-ok">Normal</span></td></tr>
+    </table>
+
+    <h3>Key Markers</h3>
+    <table>
+      <tr><th>Parameter</th><th>Result</th><th>Reference</th><th>Status</th></tr>
+      <tr><td>Ferritin</td><td>43.6 ng/mL</td><td>10&ndash;291</td><td><span class="val-borderline">Suboptimal for fertility (&gt;50&ndash;70 preferred)</span></td></tr>
+      <tr><td><strong>Homocysteine</strong></td><td><strong>18.1 &mu;mol/L</strong></td><td><strong>3.7&ndash;13.9</strong></td><td><span class="badge badge-red">ELEVATED</span></td></tr>
+    </table>
+
+    <h3>Thyroid</h3>
+    <table>
+      <tr><th>Parameter</th><th>Result</th><th>Reference</th><th>Status</th></tr>
+      <tr><td>TSH</td><td>1.65 &mu;IU/mL</td><td>0.27&ndash;4.70</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>Free T4</td><td>1.17 ng/dL</td><td>0.70&ndash;1.90</td><td><span class="val-ok">Normal</span></td></tr>
+    </table>
+
+    <h3>Vitamins</h3>
+    <table>
+      <tr><th>Parameter</th><th>Result</th><th>Reference</th><th>Status</th></tr>
+      <tr><td>Vitamin D (25-OH)</td><td>36.7 ng/mL</td><td>&gt;30</td><td><span class="val-ok">Adequate</span></td></tr>
+      <tr><td><strong>Vitamin B12</strong></td><td><strong>236 pg/mL</strong></td><td><strong>211&ndash;911</strong></td><td><span class="badge badge-orange">Low-normal (functional deficiency with elevated homocysteine)</span></td></tr>
+    </table>
+
+    <h3>Reproductive Hormones (Follicular Phase)</h3>
+    <table>
+      <tr><th>Parameter</th><th>Result</th><th>Reference (Follicular)</th><th>Status</th></tr>
+      <tr><td>FSH</td><td>8.47 mIU/mL</td><td>2.50&ndash;10.20</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>LH</td><td>3.95 mIU/mL</td><td>1.90&ndash;12.50</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>Estradiol</td><td>61.3 pg/mL</td><td>19.5&ndash;144.2</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>Prolactin</td><td>6.56 ng/mL</td><td>2.8&ndash;29.2</td><td><span class="val-ok">Normal</span></td></tr>
+    </table>
+  </div>
+
+  <!-- Infection Screening -->
+  <div class="card" id="infections">
+    <h2>Infection Screening (10 Feb 2026)</h2>
+    <div class="alert alert-green">
+      <strong>All screening tests negative. Immunity present for toxoplasmosis, rubella, and CMV.</strong>
+    </div>
+    <table>
+      <tr><th>Test</th><th>Result</th><th>Interpretation</th></tr>
+      <tr><td>Hepatitis B (HBsAg)</td><td>Non-reactive (0.03)</td><td><span class="val-ok">Negative</span></td></tr>
+      <tr><td>Hepatitis B (anti-HBc IgM)</td><td>Non-reactive (0.12)</td><td><span class="val-ok">Negative</span></td></tr>
+      <tr><td>Hepatitis B (anti-HBc IgG)</td><td>Non-reactive</td><td><span class="val-ok">Negative</span></td></tr>
+      <tr><td>Hepatitis B (anti-HBc Total)</td><td>Non-reactive</td><td><span class="val-ok">Negative</span></td></tr>
+      <tr><td>Hepatitis C (anti-HCV)</td><td>Non-reactive</td><td><span class="val-ok">Negative</span></td></tr>
+      <tr><td>HIV I &amp; II</td><td>Non-reactive (0.45)</td><td><span class="val-ok">Negative</span></td></tr>
+      <tr><td>HTLV I &amp; II</td><td>Non-reactive</td><td><span class="val-ok">Negative</span></td></tr>
+      <tr><td>Syphilis (VDRL)</td><td>Non-reactive</td><td><span class="val-ok">Negative</span></td></tr>
+      <tr><td>Toxoplasmosis IgG</td><td>Reactive (34.9 IU/mL)</td><td><span class="val-ok">Immune (past infection)</span></td></tr>
+      <tr><td>Toxoplasmosis IgM</td><td>Non-reactive (3 UA/mL)</td><td><span class="val-ok">No active infection</span></td></tr>
+      <tr><td>Rubella IgG</td><td>Reactive (27 U/mL)</td><td><span class="val-ok">Immune</span></td></tr>
+      <tr><td>Rubella IgM</td><td>Non-reactive (10 UA/mL)</td><td><span class="val-ok">No active infection</span></td></tr>
+      <tr><td>CMV IgG</td><td>Reactive (67 U/mL)</td><td><span class="val-ok">Immune (past infection)</span></td></tr>
+      <tr><td>CMV IgM</td><td>Non-reactive (6.8 U/mL)</td><td><span class="val-ok">No active infection</span></td></tr>
+    </table>
+  </div>
+
+  <!-- Thrombophilia -->
+  <div class="card" id="thrombophilia">
+    <h2>Thrombophilia Screening (10 Feb 2026)</h2>
+    <div class="alert alert-green">
+      <strong>All tests negative. No inherited thrombophilia. No antiphospholipid syndrome.</strong>
+    </div>
+    <table>
+      <tr><th>Test</th><th>Result</th><th>Reference</th><th>Status</th></tr>
+      <tr><td>Anticardiolipin IgG</td><td>1.2 APL-U/mL</td><td>&lt;14</td><td><span class="val-ok">Negative</span></td></tr>
+      <tr><td>Anticardiolipin IgM</td><td>&lt;1.7 MPL-U/mL</td><td>&lt;10</td><td><span class="val-ok">Negative</span></td></tr>
+      <tr><td>Lupus Anticoagulant</td><td>Absent</td><td>Absent</td><td><span class="val-ok">Negative</span></td></tr>
+      <tr><td>Factor V Leiden</td><td>Negative &mdash; Wild type</td><td>Negative</td><td><span class="val-ok">No mutation</span></td></tr>
+      <tr><td>Prothrombin G20210A</td><td>Negative &mdash; Wild type</td><td>Negative</td><td><span class="val-ok">No mutation</span></td></tr>
+      <tr><td>Protein S (functional)</td><td>122.7%</td><td>63.5&ndash;149.6%</td><td><span class="val-ok">Normal</span></td></tr>
+      <tr><td>Protein C (functional)</td><td>146%</td><td>70&ndash;140%</td><td><span class="val-borderline">Slightly above (clinically insignificant)</span></td></tr>
+      <tr><td>Antithrombin III</td><td>100%</td><td>83&ndash;128%</td><td><span class="val-ok">Normal</span></td></tr>
+    </table>
+  </div>
+
+  <!-- Urine -->
+  <div class="card" id="urine">
+    <h2>Urinalysis &amp; Culture</h2>
+
+    <h3>First Collection (13 Feb 2026)</h3>
+    <table>
+      <tr><th>Parameter</th><th>Result</th><th>Reference</th></tr>
+      <tr><td>Leukocytes</td><td><span class="val-high">149/&mu;L</span></td><td>0&ndash;27</td></tr>
+      <tr><td>Nitrites</td><td><span class="val-high">Positive</span></td><td>Negative</td></tr>
+      <tr><td>Red blood cells</td><td>2/&mu;L</td><td>0&ndash;27</td></tr>
+      <tr><td>Culture</td><td colspan="2">Polymicrobial growth &mdash; analysis not possible, new sample recommended</td></tr>
+    </table>
+
+    <h3>Second Collection (10 Mar 2026)</h3>
+    <table>
+      <tr><th>Parameter</th><th>Result</th><th>Reference</th></tr>
+      <tr><td>pH</td><td>6.5</td><td>&mdash;</td></tr>
+      <tr><td>Density</td><td>1.011</td><td>&mdash;</td></tr>
+      <tr><td>Leukocytes</td><td>5/&mu;L</td><td>0&ndash;27</td></tr>
+      <tr><td>Nitrites</td><td><span class="val-high">Positive</span></td><td>Negative</td></tr>
+      <tr><td>Red blood cells</td><td>5/&mu;L</td><td>0&ndash;27</td></tr>
+    </table>
+    <div class="alert alert-red">
+      <strong>Culture: Escherichia coli &gt;100,000 CFU/mL</strong>
+      Significant urinary tract infection confirmed. See antibiogram in Key Problems section above.
+    </div>
+  </div>
+
+  <!-- Breast Ultrasound -->
+  <div class="card" id="breast">
+    <h2>Breast Ultrasound (28 Jan 2026)</h2>
+    <p><strong>Facility:</strong> CheckUp Cl&iacute;nica</p>
+    <div class="alert alert-green">
+      <strong>BI-RADS 2 &mdash; Benign finding. No concern.</strong>
+    </div>
+    <ul>
+      <li>Skin: no changes</li>
+      <li>Breast tissue: heterogeneous echotexture</li>
+      <li>Simple cyst in superolateral quadrant of left breast: 4.4 &times; 2.3 mm</li>
+      <li>Axillary lymph nodes: normal appearance bilaterally</li>
+    </ul>
+    <p><em>Recommendation: complement with mammography/MRI at clinical discretion.</em></p>
+  </div>
+
+  <!-- Karyotype -->
+  <div class="card" id="karyotype">
+    <h2>Karyotype &mdash; Ivan Stepanov (10 Feb 2026)</h2>
+    <p><strong>Indication:</strong> In vitro fertilization</p>
+    <p><strong>Method:</strong> G-banding (GTW), 500-band resolution. 20 metaphases evaluated, 6 karyotyped.</p>
+    <div class="alert alert-green">
+      <strong>Result: 46,XY &mdash; Normal male karyotype. No abnormalities.</strong>
+    </div>
+  </div>
+
+  <!-- Age Factor -->
+  <div class="card">
+    <h2>Age Consideration</h2>
+    <p>Anna is 38 years old. Key fertility realities at this age:</p>
+    <ul>
+      <li>Fertility declines accelerated after 35, more sharply after 37&ndash;38</li>
+      <li>Oocyte quality decreases (more chromosomal abnormalities)</li>
+      <li>Per-cycle conception probability: ~10&ndash;15% (vs. ~25&ndash;30% at age 25)</li>
+      <li>Natural conception is absolutely possible but requires optimized conditions</li>
+    </ul>
+    <div class="alert alert-blue">
+      <strong>Strategy:</strong> Remove all modifiable barriers (endometritis, homocysteine, UTI), verify prerequisites (tubal patency, sperm quality, ovarian reserve), then pursue timed natural conception with ovulation tracking. If unsuccessful after 6 months, reassess and consider IVF.
+    </div>
+  </div>
+
+  <!-- Monitoring Items -->
+  <div class="card">
+    <h2>Items to Monitor</h2>
+    <table>
+      <tr><th>Item</th><th>Current Value</th><th>Action</th></tr>
+      <tr><td>Ferritin</td><td>43.6 ng/mL</td><td>Iron bisglycinate 25&ndash;30 mg/day + vitamin C. Target &gt;50&ndash;70</td></tr>
+      <tr><td>Total Cholesterol / LDL</td><td>236 / 144 mg/dL</td><td>Diet (reduce saturated fats, increase fiber, omega-3). Statins contraindicated during conception/pregnancy</td></tr>
+      <tr><td>Uric Acid</td><td>5.8 mg/dL</td><td>Monitor during pregnancy (preeclampsia risk factor). Reduce red meat, increase water</td></tr>
+      <tr><td>Fasting Glucose</td><td>98 mg/dL</td><td>HbA1c 4.8% is reassuring. Monitor during pregnancy (gestational diabetes screening)</td></tr>
+    </table>
+  </div>
+
+  <!-- Positive Results -->
+  <div class="card">
+    <h2>Favorable Results</h2>
+    <div class="two-col">
+      <div class="alert alert-green"><strong>MRI:</strong> No endometriosis, no adenomyosis</div>
+      <div class="alert alert-green"><strong>Thrombophilia:</strong> All tests negative</div>
+      <div class="alert alert-green"><strong>Hormones:</strong> All normal, adequate ovarian reserve for age</div>
+      <div class="alert alert-green"><strong>Thyroid:</strong> TSH and T4 optimal</div>
+      <div class="alert alert-green"><strong>Infections:</strong> All screening negative</div>
+      <div class="alert alert-green"><strong>Immunity:</strong> Toxoplasmosis, rubella, CMV</div>
+      <div class="alert alert-green"><strong>Karyotypes:</strong> Both partners normal</div>
+      <div class="alert alert-green"><strong>Uterine cavity:</strong> Normal shape and volume</div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Disclaimer:</strong> This report is an AI-assisted analysis of medical examination results. It does not constitute a medical diagnosis or replace professional medical advice. All findings and recommendations should be discussed with the treating physician. Treatment decisions should be made by qualified healthcare professionals based on the complete clinical picture.
+  </div>
+
+</div>
+
+<footer>
+  <p>Generated April 28, 2026 &bull; AI-assisted medical report analysis</p>
+</footer>
+
+</body>
+</html>
